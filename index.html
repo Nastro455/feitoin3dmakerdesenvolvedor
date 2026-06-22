@@ -2046,8 +2046,7 @@
     body.lens-retro .field:has(#inputLayout),
     body.lens-retro .field:has(#frameCount),
     body.lens-retro .field:has(#candidateAssistToggle),
-    body.lens-retro .field:has(#resetFramingBtn),
-    body.lens-retro .field:has(#exportFormat),
+        body.lens-retro .field:has(#exportFormat),
     body.lens-retro .field:has(#delay),
     body.lens-retro .field:has(#boomerang),
     body.lens-retro .field:has(#totalDuration),
@@ -2365,6 +2364,153 @@
         min-height: 64px !important;
       }
     }
+
+  
+
+    /* Correção visual — caixas do modo Retro seguindo a identidade azul */
+    .retro-mode-note,
+    .retro-look-note {
+      border-color: var(--line) !important;
+      background: rgba(30,155,255,.08) !important;
+    }
+
+    .retro-mode-note strong,
+    .retro-look-note strong {
+      color: var(--warning) !important;
+    }
+
+    .lens-option-card.retro {
+      background: linear-gradient(180deg, rgba(30,155,255,.18), rgba(7,24,43,.86)) !important;
+      border-color: rgba(30,155,255,.18) !important;
+    }
+
+    .lens-option-card.retro .lens-option-icon {
+      color: var(--accent) !important;
+    }
+
+
+    /* Correção forte — proporção dos painéis recolhíveis */
+    .tool-groups {
+      align-content: start !important;
+      grid-auto-rows: auto !important;
+    }
+
+    .tool-group {
+      min-height: 0 !important;
+      height: auto !important;
+      max-height: none !important;
+    }
+
+    .tool-group summary {
+      min-height: 64px !important;
+      height: auto !important;
+      padding: 12px 14px !important;
+      align-items: center !important;
+    }
+
+    .tool-group:not([open]) {
+      min-height: 0 !important;
+      height: auto !important;
+      overflow: hidden !important;
+    }
+
+    .tool-group:not([open]) .tool-group-content {
+      display: none !important;
+      height: 0 !important;
+      max-height: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .tool-group:not([open]) summary {
+      min-height: 62px !important;
+    }
+
+    .tool-group-title {
+      min-width: 0 !important;
+      max-width: calc(100% - 28px) !important;
+    }
+
+    .tool-group-title > div {
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .tool-group-title strong,
+    .tool-group-title span {
+      display: block !important;
+      white-space: normal !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .tool-group-title span {
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      line-height: 1.32 !important;
+      max-height: 2.7em !important;
+    }
+
+    @media (min-width: 981px) {
+      .grid {
+        grid-template-columns: 390px minmax(0, 1fr) !important;
+      }
+
+      aside.card {
+        position: sticky;
+        top: 16px;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+      }
+
+      aside.card::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      aside.card::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,.16);
+        border-radius: 999px;
+      }
+    }
+
+
+    /* Preview acompanha a rolagem no desktop */
+    @media (min-width: 981px) {
+      .preview-main-column {
+        position: sticky;
+        top: 16px;
+        align-self: start;
+      }
+
+      .canvas-box {
+        min-height: min(640px, calc(100vh - 260px));
+      }
+
+      body.lens-retro .canvas-box {
+        min-height: min(680px, calc(100vh - 190px));
+      }
+    }
+
+
+    /* Estrutura: mantém o desktop como o site 3D anterior e reorganiza só no mobile */
+    @media (min-width: 681px) {
+      .grid {
+        display: grid !important;
+      }
+
+      .preview-wrap {
+        display: grid !important;
+      }
+
+      .canvas-box,
+      aside.card,
+      .visualizer-actions-card {
+        order: initial !important;
+      }
+    }
+
 
   </style>
 </head>
@@ -3166,11 +3312,11 @@
 
       if (isRetro) {
         if (importTitle) importTitle.textContent = 'Upload e ajustes da Lente Retro';
-        if (importDescription) importDescription.textContent = 'Carregue uma foto da Lente Retro e prepare a base para tratamento.';
+        if (importDescription) importDescription.textContent = 'Carregue a foto e escolha o formato final.';
         if (creativeTitle) creativeTitle.textContent = 'Ajustes de imagem e recursos criativos';
-        if (creativeDescription) creativeDescription.textContent = 'Controle luz, cor, nitidez, glow, LUT, granulado e acabamento analógico.';
+        if (creativeDescription) creativeDescription.textContent = 'Receitas, luz, cor, grão, matte e glow.';
         if (exportTitle) exportTitle.textContent = 'Exportar foto final';
-        if (exportDescription) exportDescription.textContent = 'Exporte em JPG alto para postagem ou entrega.';
+        if (exportDescription) exportDescription.textContent = 'Exporte a foto final em JPG alto.';
         if (dropzoneStrong) dropzoneStrong.textContent = '1. Carregar foto da Lente';
         if (dropzoneSpan) dropzoneSpan.textContent = 'JPG, PNG, WEBP, HEIC/HEIF, TIFF e arquivos de câmera quando suportados pelo navegador';
         if (emptyText) emptyText.textContent = 'Carregue uma foto da Lente Retro para começar o tratamento.';
@@ -3195,7 +3341,7 @@
       setFieldVisibleByControl(inputLayoutSelect, !isRetro);
       setFieldVisibleByControl(frameCountSelect, !isRetro);
       setFieldVisibleByControl(candidateAssistToggle, !isRetro);
-      setFieldVisibleByControl(resetFramingBtn, !isRetro);
+      setFieldVisibleByControl(resetFramingBtn, true);
       setFieldVisibleByControl(exportFormatSelect, !isRetro);
       setFieldVisibleByControl(delayInput, !isRetro);
       setFieldVisibleByControl(boomerangInput, !isRetro);
@@ -3219,7 +3365,7 @@
       updateLensModeInterface();
 
       if (mode === 'retro') {
-        setStatus('Modo Lente Retro ativo. Carregue uma foto para tratar com estética analógica.');
+        setStatus('Modo Lente Retro ativo. Carregue uma foto, arraste no preview para mover e use o scroll para zoom.');
       } else {
         setStatus('Modo Lente 3D ativo. Carregue uma composição com 2, 3 ou 4 fotos.');
       }
@@ -4490,7 +4636,7 @@
     }
 
     function canUseManualFraming() {
-      return hasCompleteKeypointAlignment() && !selectingKeypoints && finalFrameCanvases.length > 0;
+      return rawFrameCanvases.length > 0 && finalFrameCanvases.length > 0 && !selectingKeypoints;
     }
 
     function updateFramingCursorState() {

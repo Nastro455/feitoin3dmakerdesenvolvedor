@@ -301,3 +301,14 @@ Com base nas referências visuais enviadas, o modo **Lente Retro** agora conta c
 3. Aplicar uma **receita pronta** como base
 4. Refinar exposição, LUT, nitidez, glow e novos controles retro
 5. Exportar em **JPG alto**
+
+
+## Correção — layout Retro/3D e enquadramento
+
+- As caixas informativas da Lente Retro agora seguem a mesma identidade azul da interface 3D.
+- Os painéis recolhíveis foram compactados para evitar proporção grande/desproporcional.
+- A estrutura visual foi aproximada novamente da versão anterior do site 3D.
+- O preview agora acompanha a rolagem no desktop.
+- No modo Retro, o usuário pode mover a imagem arrastando diretamente no preview.
+- No modo Retro, o usuário pode dar zoom ou tirar zoom usando o scroll do mouse no preview.
+- O reset de enquadramento permanece disponível também na Lente Retro.
