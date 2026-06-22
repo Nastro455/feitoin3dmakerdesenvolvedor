@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Feitoin3d Maker favicon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1f38"/>
+      <stop offset="100%" stop-color="#061426"/>
+    </linearGradient>
+    <linearGradient id="lensEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#53b8ff"/>
+      <stop offset="100%" stop-color="#006ee6"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bg)"/>
+  <g transform="translate(0 1)">
+    <g><circle cx="18" cy="32" r="11.5" fill="#03111f" stroke="url(#lensEdge)" stroke-width="3"/><circle cx="18" cy="32" r="6.8" fill="#0f3f68"/><circle cx="18" cy="32" r="3.7" fill="#8ed7ff" opacity=".95"/><circle cx="15.2" cy="28.8" r="1.7" fill="#fff" opacity=".95"/></g>
+    <g><circle cx="32" cy="32" r="11.5" fill="#03111f" stroke="url(#lensEdge)" stroke-width="3"/><circle cx="32" cy="32" r="6.8" fill="#0f3f68"/><circle cx="32" cy="32" r="3.7" fill="#8ed7ff" opacity=".95"/><circle cx="29.2" cy="28.8" r="1.7" fill="#fff" opacity=".95"/></g>
+    <g><circle cx="46" cy="32" r="11.5" fill="#03111f" stroke="url(#lensEdge)" stroke-width="3"/><circle cx="46" cy="32" r="6.8" fill="#0f3f68"/><circle cx="46" cy="32" r="3.7" fill="#8ed7ff" opacity=".95"/><circle cx="43.2" cy="28.8" r="1.7" fill="#fff" opacity=".95"/></g>
+  </g>
+</svg>
