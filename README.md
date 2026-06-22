@@ -312,3 +312,16 @@ Com base nas referências visuais enviadas, o modo **Lente Retro** agora conta c
 - No modo Retro, o usuário pode mover a imagem arrastando diretamente no preview.
 - No modo Retro, o usuário pode dar zoom ou tirar zoom usando o scroll do mouse no preview.
 - O reset de enquadramento permanece disponível também na Lente Retro.
+
+
+## Repaginação visual dos modos
+
+Foi aplicada uma repaginação geral para acomodar melhor os modos Lente 3D e Lente Retro:
+
+- Nova barra superior para alternar entre Lente 3D e Lente Retro.
+- Painel lateral redesenhado com cabeçalho e rolagem interna.
+- Painéis recolhíveis compactos e mais consistentes.
+- Preview fixo no desktop para acompanhar a rolagem.
+- Modo Retro com layout mais limpo, sem coluna de vídeo lateral.
+- Receitas da Lente Retro organizadas em cards menores.
+- Estrutura visual aproximada da versão 3D original, mas preparada para os dois modos.

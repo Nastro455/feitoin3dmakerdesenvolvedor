@@ -2512,6 +2512,405 @@
     }
 
 
+  
+    /* REPAGINAÇÃO — layout limpo para Lente 3D e Lente Retro */
+    body {
+      align-items: flex-start;
+    }
+
+    .app {
+      width: min(1480px, 100%);
+    }
+
+    header {
+      margin-bottom: 22px;
+    }
+
+    header p {
+      max-width: 920px;
+    }
+
+    .lens-mode-toolbar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 0 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(11,31,56,.78);
+      box-shadow: 0 16px 50px rgba(0,0,0,.22);
+      backdrop-filter: blur(12px);
+    }
+
+    body:not(.lens-gate-active) .lens-mode-toolbar {
+      display: flex;
+    }
+
+    .lens-mode-toolbar-text {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .lens-mode-toolbar-text span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .lens-mode-toolbar-text strong {
+      font-size: 18px;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    .lens-mode-toolbar-actions {
+      display: inline-flex;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .lens-toolbar-btn {
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .lens-toolbar-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .grid {
+      grid-template-columns: 380px minmax(0, 1fr) !important;
+      gap: 16px !important;
+      align-items: start !important;
+    }
+
+    .grid > aside.card {
+      padding: 0 !important;
+      overflow: hidden !important;
+      position: sticky;
+      top: 16px;
+      max-height: calc(100vh - 32px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grid > aside.card::before {
+      content: "Painel de edição";
+      display: block;
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      font-size: 18px;
+      background: rgba(255,255,255,.035);
+    }
+
+    body.lens-retro .grid > aside.card::before {
+      content: "Editor da Lente Retro";
+    }
+
+    body.lens-3d .grid > aside.card::before {
+      content: "Montagem da Lente 3D";
+    }
+
+    .tool-groups {
+      padding: 12px;
+      overflow-y: auto;
+      display: grid !important;
+      gap: 10px !important;
+      align-content: start !important;
+    }
+
+    .tool-groups::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .tool-groups::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.16);
+      border-radius: 999px;
+    }
+
+    .tool-group {
+      height: auto !important;
+      min-height: 0 !important;
+      border-radius: 18px !important;
+      background: rgba(255,255,255,.035) !important;
+      border-color: rgba(142,203,255,.16) !important;
+      overflow: hidden !important;
+    }
+
+    .tool-group summary {
+      min-height: 58px !important;
+      padding: 12px !important;
+      display: grid !important;
+      grid-template-columns: 1fr 18px !important;
+      gap: 10px !important;
+      align-items: center !important;
+      background: rgba(255,255,255,.045) !important;
+    }
+
+    .tool-group:not([open]) summary {
+      min-height: 58px !important;
+    }
+
+    .tool-group:not([open]) .tool-group-content {
+      display: none !important;
+    }
+
+    .tool-group-title {
+      min-width: 0 !important;
+      display: grid !important;
+      grid-template-columns: 34px minmax(0, 1fr) !important;
+      gap: 10px !important;
+      align-items: center !important;
+    }
+
+    .tool-group-badge {
+      min-width: 34px !important;
+      width: 34px !important;
+      height: 34px !important;
+      font-size: 13px !important;
+    }
+
+    .tool-group-title strong {
+      display: block !important;
+      font-size: 14px !important;
+      line-height: 1.15 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .tool-group-title span {
+      display: none !important;
+    }
+
+    .tool-group-arrow {
+      font-size: 13px !important;
+      justify-self: end;
+    }
+
+    .tool-group-content {
+      padding: 14px !important;
+      background: rgba(3,11,20,.18) !important;
+    }
+
+    .field {
+      margin-top: 14px !important;
+    }
+
+    .field:first-child {
+      margin-top: 0 !important;
+    }
+
+    .retro-mode-note,
+    .retro-look-note {
+      border-color: rgba(30,155,255,.25) !important;
+      background: rgba(30,155,255,.08) !important;
+      border-radius: 16px !important;
+    }
+
+    .retro-mode-note strong,
+    .retro-look-note strong {
+      color: var(--warning) !important;
+    }
+
+    .retro-preset-grid {
+      grid-template-columns: 1fr !important;
+      gap: 8px !important;
+    }
+
+    .retro-preset-btn {
+      min-height: 62px !important;
+      padding: 11px 12px !important;
+      border-radius: 16px !important;
+      background: rgba(30,155,255,.06) !important;
+      border-color: rgba(30,155,255,.18) !important;
+    }
+
+    .retro-preset-btn strong {
+      color: var(--warning) !important;
+    }
+
+    .preview-wrap {
+      grid-template-columns: minmax(0, 1fr) 330px !important;
+      gap: 16px !important;
+      align-items: start !important;
+    }
+
+    .preview-main-column {
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      display: grid !important;
+      gap: 12px !important;
+    }
+
+    .preview-point-actions-card {
+      padding: 14px !important;
+      border-radius: 20px !important;
+      background: rgba(11,31,56,.82) !important;
+    }
+
+    .preview-point-actions {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .canvas-box {
+      min-height: clamp(520px, calc(100vh - 260px), 720px) !important;
+      border-radius: 22px !important;
+    }
+
+    body.lens-retro .preview-wrap {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+
+    body.lens-retro .preview-main-column {
+      max-width: 900px;
+    }
+
+    body.lens-retro .canvas-box {
+      min-height: clamp(560px, calc(100vh - 210px), 780px) !important;
+    }
+
+    body.lens-retro .preview-point-actions-card,
+    body.lens-retro .demo-side-column,
+    body.lens-retro #framesList {
+      display: none !important;
+    }
+
+    .demo-side-column {
+      position: sticky;
+      top: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .workflow-card {
+      margin: 0 !important;
+      padding: 14px !important;
+      border-radius: 20px !important;
+    }
+
+    .workflow-list {
+      gap: 8px !important;
+    }
+
+    .workflow-item {
+      grid-template-columns: 32px 1fr !important;
+      padding: 10px !important;
+      border-radius: 15px !important;
+    }
+
+    .workflow-item span {
+      width: 32px !important;
+      height: 32px !important;
+    }
+
+    .workflow-item small {
+      font-size: 12px !important;
+    }
+
+    .lens-mode-card {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .lens-option-card.retro {
+      background: linear-gradient(180deg, rgba(30,155,255,.18), rgba(7,24,43,.86)) !important;
+    }
+
+    .lens-option-card.retro .lens-option-icon {
+      color: var(--accent) !important;
+    }
+
+    @media (max-width: 1180px) {
+      .grid {
+        grid-template-columns: 360px minmax(0, 1fr) !important;
+      }
+
+      .preview-wrap {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      .demo-side-column {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .lens-mode-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .lens-mode-toolbar-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .grid > aside.card {
+        position: static !important;
+        max-height: none !important;
+        width: 100% !important;
+      }
+
+      .preview-main-column {
+        position: static !important;
+      }
+
+      .preview-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100%;
+      }
+
+      .preview-point-actions-card {
+        order: -2;
+      }
+
+      .canvas-box {
+        order: -1;
+        min-height: 56vh !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .tool-groups {
+        padding: 10px;
+      }
+
+      .tool-group summary {
+        min-height: 56px !important;
+      }
+
+      .tool-group-title strong {
+        font-size: 15px !important;
+      }
+
+      .canvas-box {
+        min-height: 58vh !important;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -2549,6 +2948,19 @@
     </section>
 
 
+
+    <section class="lens-mode-toolbar" id="lensModeToolbar" aria-label="Modo de edição">
+      <div class="lens-mode-toolbar-text">
+        <span>Modo de edição</span>
+        <strong id="activeLensModeTitle">Escolha uma lente</strong>
+      </div>
+      <div class="lens-mode-toolbar-actions">
+        <button id="toolbar3dMode" type="button" class="lens-toolbar-btn">Lente 3D</button>
+        <button id="toolbarRetroMode" type="button" class="lens-toolbar-btn">Lente Retro</button>
+      </div>
+    </section>
+
+
     <section class="grid">
       <aside class="card">
         <div class="tool-groups">
@@ -2572,7 +2984,7 @@
 
               <div class="retro-look-note">
                 <strong>Looks recomendados da Lente Retro</strong>
-                Use as receitas prontas no painel de estilo para chegar mais rápido a resultados como as referências: low light esverdeado, flash de festa, golden hour e nostalgia de quarto.
+                Use receitas prontas como ponto de partida e refine luz, cor, grão e vinheta.
               </div>
 
               <label class="dropzone" id="dropzone">
@@ -3074,6 +3486,10 @@
       'importScripts("https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js");'
     ], { type: 'application/javascript' }));
 
+    const lensModeToolbar = document.querySelector('#lensModeToolbar');
+    const activeLensModeTitle = document.querySelector('#activeLensModeTitle');
+    const toolbar3dModeBtn = document.querySelector('#toolbar3dMode');
+    const toolbarRetroModeBtn = document.querySelector('#toolbarRetroMode');
     const lensModeGate = document.querySelector('#lensModeGate');
     const select3dModeBtn = document.querySelector('#select3dMode');
     const selectRetroModeBtn = document.querySelector('#selectRetroMode');
@@ -3296,6 +3712,10 @@
       document.body.classList.toggle('lens-3d', currentLensMode === '3d');
       document.body.classList.toggle('lens-gate-active', !currentLensMode);
 
+      if (toolbar3dModeBtn) toolbar3dModeBtn.classList.toggle('active', currentLensMode === '3d');
+      if (toolbarRetroModeBtn) toolbarRetroModeBtn.classList.toggle('active', currentLensMode === 'retro');
+      if (activeLensModeTitle) activeLensModeTitle.textContent = isRetro ? 'Lente Retro — editor de foto' : (currentLensMode === '3d' ? 'Lente 3D — montagem de GIF e vídeo' : 'Escolha uma lente');
+
       if (!currentLensMode) return;
 
       fileInput.accept = isRetro ? RETRO_FILE_ACCEPT : THREE_D_FILE_ACCEPT;
@@ -3363,6 +3783,10 @@
       resetAll();
       currentLensMode = mode;
       updateLensModeInterface();
+      [stepImportGroup, stepCreativeGroup, stepExportGroup].forEach((group) => {
+        if (!group) return;
+        group.open = group === stepImportGroup;
+      });
 
       if (mode === 'retro') {
         setStatus('Modo Lente Retro ativo. Carregue uma foto, arraste no preview para mover e use o scroll para zoom.');
@@ -3796,6 +4220,8 @@
       if (file) loadFile(file);
     });
 
+    if (toolbar3dModeBtn) toolbar3dModeBtn.addEventListener('click', () => selectLensMode('3d'));
+    if (toolbarRetroModeBtn) toolbarRetroModeBtn.addEventListener('click', () => selectLensMode('retro'));
     if (select3dModeBtn) select3dModeBtn.addEventListener('click', () => selectLensMode('3d'));
     if (selectRetroModeBtn) selectRetroModeBtn.addEventListener('click', () => selectLensMode('retro'));
     if (changeLensBtn) changeLensBtn.addEventListener('click', openLensGate);
