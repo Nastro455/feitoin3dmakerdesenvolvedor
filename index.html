@@ -2911,6 +2911,197 @@
       }
     }
 
+  
+    /* Refinamento visual — painéis recolhíveis no estilo do mock enviado */
+    .grid {
+      grid-template-columns: 400px minmax(0, 1fr) !important;
+      gap: 18px !important;
+    }
+
+    .grid > aside.card {
+      border-radius: 26px !important;
+      background:
+        linear-gradient(180deg, rgba(20,54,92,.72), rgba(8,27,49,.86)) !important;
+      border: 1px solid rgba(100,170,235,.18) !important;
+      box-shadow: 0 18px 50px rgba(0,0,0,.22) !important;
+    }
+
+    .grid > aside.card::before {
+      padding: 16px 18px 10px !important;
+      background: transparent !important;
+      border-bottom: 0 !important;
+      font-size: 17px !important;
+      color: rgba(255,255,255,.96) !important;
+    }
+
+    .tool-groups {
+      padding: 14px !important;
+      gap: 14px !important;
+      background: transparent !important;
+    }
+
+    .tool-group {
+      border-radius: 22px !important;
+      border: 1px solid rgba(119,184,240,.16) !important;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035)) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03) !important;
+      overflow: hidden !important;
+    }
+
+    .tool-group summary {
+      min-height: 94px !important;
+      padding: 16px 16px !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 18px !important;
+      gap: 12px !important;
+      align-items: center !important;
+      background: transparent !important;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .tool-group summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .tool-group:not([open]) summary {
+      min-height: 94px !important;
+    }
+
+    .tool-group[open] summary {
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)) !important;
+    }
+
+    .tool-group-title {
+      display: grid !important;
+      grid-template-columns: 42px minmax(0, 1fr) !important;
+      gap: 14px !important;
+      align-items: center !important;
+      max-width: 100% !important;
+    }
+
+    .tool-group-badge {
+      width: 42px !important;
+      height: 42px !important;
+      min-width: 42px !important;
+      border-radius: 999px !important;
+      background: linear-gradient(180deg, rgba(63,140,220,.95), rgba(46,107,183,.95)) !important;
+      border: 1px solid rgba(255,255,255,.08) !important;
+      color: #eaf5ff !important;
+      font-weight: 900 !important;
+      font-size: 15px !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12) !important;
+    }
+
+    .tool-group-title > div {
+      min-width: 0 !important;
+      display: grid !important;
+      gap: 4px !important;
+      align-content: center !important;
+    }
+
+    .tool-group-title strong {
+      display: block !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: initial !important;
+      font-size: 17px !important;
+      line-height: 1.14 !important;
+      letter-spacing: -.02em !important;
+      color: #ffffff !important;
+      font-weight: 900 !important;
+    }
+
+    .tool-group-title span {
+      display: block !important;
+      white-space: normal !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      color: rgba(226,236,248,.86) !important;
+      font-size: 13px !important;
+      line-height: 1.32 !important;
+      max-width: 100% !important;
+    }
+
+    .tool-group-arrow {
+      width: 18px !important;
+      min-width: 18px !important;
+      color: rgba(224,236,249,.9) !important;
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      justify-self: end !important;
+      transition: transform .18s ease;
+    }
+
+    .tool-group[open] .tool-group-arrow {
+      transform: rotate(180deg);
+    }
+
+    .tool-group-content {
+      padding: 16px !important;
+      background: rgba(2,10,18,.14) !important;
+    }
+
+    .tool-group-content .field:first-child {
+      margin-top: 0 !important;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .grid > aside.card {
+        border-radius: 24px !important;
+      }
+
+      .tool-group summary,
+      .tool-group:not([open]) summary {
+        min-height: 90px !important;
+      }
+
+      .tool-group-title strong {
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .tool-groups {
+        padding: 12px !important;
+        gap: 12px !important;
+      }
+
+      .tool-group {
+        border-radius: 20px !important;
+      }
+
+      .tool-group summary,
+      .tool-group:not([open]) summary {
+        min-height: 88px !important;
+        padding: 14px !important;
+      }
+
+      .tool-group-title {
+        grid-template-columns: 40px minmax(0, 1fr) !important;
+        gap: 12px !important;
+      }
+
+      .tool-group-badge {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+      }
+
+      .tool-group-title strong {
+        font-size: 15px !important;
+      }
+
+      .tool-group-title span {
+        font-size: 12px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">

@@ -325,3 +325,13 @@ Foi aplicada uma repaginação geral para acomodar melhor os modos Lente 3D e Le
 - Modo Retro com layout mais limpo, sem coluna de vídeo lateral.
 - Receitas da Lente Retro organizadas em cards menores.
 - Estrutura visual aproximada da versão 3D original, mas preparada para os dois modos.
+
+
+## Refinamento visual dos painéis laterais
+
+Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais próximos da referência:
+- cards maiores e mais limpos;
+- badge numérico circular em destaque;
+- título e descrição visíveis mesmo recolhidos;
+- chevron discreto à direita;
+- visual mais elegante e coerente com o restante da interface.
