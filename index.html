@@ -3102,6 +3102,60 @@
       }
     }
 
+  
+    /* Rolagem interna dentro de cada painel aberto */
+    .tool-group[open] {
+      display: grid !important;
+      grid-template-rows: auto minmax(0, 1fr) !important;
+    }
+
+    .tool-group[open] .tool-group-content {
+      display: block !important;
+      max-height: min(46vh, 430px) !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(173, 214, 255, .42) rgba(255,255,255,.04);
+      padding-right: 10px !important;
+    }
+
+    .tool-group[open] .tool-group-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .tool-group[open] .tool-group-content::-webkit-scrollbar-track {
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+    }
+
+    .tool-group[open] .tool-group-content::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(142,203,255,.72), rgba(78,146,223,.82));
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .tool-group[open] .tool-group-content::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, rgba(176,220,255,.88), rgba(89,159,238,.92));
+    }
+
+    .tool-group[open] .tool-group-content > *:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    @media (max-width: 980px) {
+      .tool-group[open] .tool-group-content {
+        max-height: 42vh !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .tool-group[open] .tool-group-content {
+        max-height: 38vh !important;
+        padding-right: 6px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -3830,23 +3884,23 @@
     function applyRetroRecipe(presetName, announce = true) {
       const recipes = {
         greenroom: {
-          vintageEffect: 'fuji', vintageIntensity: 75, exposure: -10, sharpness: 5, glow: 0,
-          warmth: -20, fade: 18, grain: 40, vignette: 28, rgb: 0,
+          vintageEffect: 'fuji', vintageIntensity: 90, exposure: -14, sharpness: 5, glow: 0,
+          warmth: -35, fade: 25, grain: 60, vignette: 38, rgb: 0,
           message: 'Receita “Low light verde” aplicada. Ótima para quarto escuro com tom frio e climão analógico.'
         },
         flashparty: {
-          vintageEffect: 'slide', vintageIntensity: 80, exposure: 8, sharpness: 20, glow: 6,
-          warmth: 8, fade: 6, grain: 28, vignette: 12, rgb: 0,
+          vintageEffect: 'slide', vintageIntensity: 92, exposure: 14, sharpness: 25, glow: 10,
+          warmth: 14, fade: 8, grain: 38, vignette: 18, rgb: 0,
           message: 'Receita “Flash de festa” aplicada. Ideal para retratos com flash direto, contraste forte e pele destacada.'
         },
         goldenhour: {
-          vintageEffect: 'kodak', vintageIntensity: 72, exposure: 10, sharpness: 8, glow: 42,
-          warmth: 35, fade: 18, grain: 22, vignette: 22, rgb: 0,
+          vintageEffect: 'kodak', vintageIntensity: 88, exposure: 12, sharpness: 10, glow: 55,
+          warmth: 45, fade: 22, grain: 32, vignette: 28, rgb: 0,
           message: 'Receita “Golden retrô” aplicada. Excelente para luz do pôr do sol e brilho nostálgico.'
         },
         nostalgicroom: {
-          vintageEffect: 'faded', vintageIntensity: 78, exposure: 5, sharpness: 0, glow: 12,
-          warmth: 22, fade: 30, grain: 48, vignette: 18, rgb: 0,
+          vintageEffect: 'faded', vintageIntensity: 90, exposure: 6, sharpness: 0, glow: 18,
+          warmth: 32, fade: 42, grain: 62, vignette: 26, rgb: 0,
           message: 'Receita “Quarto nostálgico” aplicada. Entrega desfoque suave, matte quente e granulado retrô.'
         }
       };
@@ -3872,14 +3926,7 @@
       updateRetroControlLabels();
       setRetroPresetButtonState(presetName);
 
-      if (rawFrameCanvases.length && !selectingKeypoints) {
-        rebuildFinalFrames();
-        startPreview();
-      }
-
-      if (announce) {
-        setStatus(config.message);
-      }
+      refreshPreviewAfterCreativeChange(announce ? config.message : 'Receita Retro aplicada no preview.');
     }
 
 
@@ -4175,6 +4222,33 @@
       if (!selectingKeypoints) startPreview();
     });
 
+
+    function refreshPreviewAfterCreativeChange(message = '') {
+      if (!rawFrameCanvases.length || selectingKeypoints) return;
+
+      clearInterval(animationTimer);
+      rebuildFinalFrames();
+
+      if (currentLensMode === 'retro') {
+        previewMode = 'frame';
+        selectedAdjustFrame = 0;
+        const frame = finalFrameCanvases[0];
+        if (frame) {
+          requestAnimationFrame(() => {
+            drawPreviewFrame(frame);
+            updateFramingCursorState();
+          });
+        }
+      } else {
+        startPreview();
+      }
+
+      updateWorkflowStatus();
+      updateExportResultMeta();
+      if (message) setStatus(message);
+    }
+
+
     vintageEffectSelect.addEventListener('change', () => {
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
@@ -4188,12 +4262,7 @@
     vintageIntensityInput.addEventListener('input', () => {
       vintageIntensityValue.textContent = `${vintageIntensityInput.value}%`;
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
-      if (!rawFrameCanvases.length || selectingKeypoints) return;
-      rebuildFinalFrames();
-      startPreview();
-      setStatus(`Intensidade do efeito / LUT ajustada para ${vintageIntensityInput.value}%.`);
-      updateWorkflowStatus();
-      updateExportResultMeta();
+      refreshPreviewAfterCreativeChange(`Intensidade do efeito / LUT ajustada para ${vintageIntensityInput.value}%.`);
     });
 
     customLutInput.addEventListener('change', async (event) => {
@@ -4214,11 +4283,7 @@
 
         clearLutBtn.disabled = false;
         lutStatus.textContent = `LUT carregado: ${customLut.fileName} • ${customLut.size}³`;
-        if (rawFrameCanvases.length && !selectingKeypoints) {
-          rebuildFinalFrames();
-          startPreview();
-        }
-        setStatus(`LUT personalizado aplicado: ${customLut.fileName}.`);
+        refreshPreviewAfterCreativeChange(`LUT personalizado aplicado: ${customLut.fileName}.`);
       } catch (error) {
         customLut = null;
         clearLutBtn.disabled = true;
@@ -4233,68 +4298,46 @@
       customLutInput.value = '';
       clearLutBtn.disabled = true;
       lutStatus.textContent = 'Nenhum LUT carregado. Suporte principal: .CUBE e .3DL.';
-      if (rawFrameCanvases.length && !selectingKeypoints) {
-        rebuildFinalFrames();
-        startPreview();
-      }
-      setStatus('LUT personalizado removido.');
+      refreshPreviewAfterCreativeChange('LUT personalizado removido.');
     });
 
     exposureAdjustInput.addEventListener('input', () => {
       const exposure = Number(exposureAdjustInput.value);
       exposureAdjustValue.textContent = exposure > 0 ? `+${exposure}` : `${exposure}`;
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
-      if (!rawFrameCanvases.length || selectingKeypoints) return;
-      rebuildFinalFrames();
-      startPreview();
-      if (exposure > 0) {
-        setStatus(`Exposição aumentada em +${exposure}.`);
-      } else if (exposure < 0) {
-        setStatus(`Exposição reduzida em ${exposure}.`);
-      } else {
-        setStatus('Exposição neutra aplicada.');
-      }
+      refreshPreviewAfterCreativeChange(exposure > 0
+        ? `Exposição aumentada em +${exposure}.`
+        : (exposure < 0 ? `Exposição reduzida em ${exposure}.` : 'Exposição neutra aplicada.')
+      );
     });
 
     sharpnessAdjustInput.addEventListener('input', () => {
       const sharpness = Number(sharpnessAdjustInput.value);
       sharpnessAdjustValue.textContent = `${sharpness}%`;
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
-      if (!rawFrameCanvases.length || selectingKeypoints) return;
-      rebuildFinalFrames();
-      startPreview();
-      if (sharpness > 0) {
-        setStatus(`Nitidez aumentada para ${sharpness}%.`);
-      } else {
-        setStatus('Nitidez neutra aplicada.');
-      }
+      refreshPreviewAfterCreativeChange(sharpness > 0
+        ? `Nitidez aumentada para ${sharpness}%.`
+        : 'Nitidez neutra aplicada.'
+      );
     });
 
     glowAdjustInput.addEventListener('input', () => {
       const glow = Number(glowAdjustInput.value);
       glowAdjustValue.textContent = `${glow}%`;
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
-      if (!rawFrameCanvases.length || selectingKeypoints) return;
-      rebuildFinalFrames();
-      startPreview();
-      if (glow > 0) {
-        setStatus(`Glow ajustado para ${glow}%.`);
-      } else {
-        setStatus('Glow desativado.');
-      }
+      refreshPreviewAfterCreativeChange(glow > 0
+        ? `Glow ajustado para ${glow}%.`
+        : 'Glow desativado.'
+      );
     });
 
     rgbDisplacementInput.addEventListener('input', () => {
       rgbDisplacementValue.textContent = `${rgbDisplacementInput.value}px`;
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
-      if (!rawFrameCanvases.length || selectingKeypoints) return;
-      rebuildFinalFrames();
-      startPreview();
-      if (Number(rgbDisplacementInput.value) > 0) {
-        setStatus(`Deslocamento RGB 3D ajustado para ${rgbDisplacementInput.value}px.`);
-      } else {
-        setStatus('Deslocamento RGB 3D desativado.');
-      }
+      refreshPreviewAfterCreativeChange(Number(rgbDisplacementInput.value) > 0
+        ? `Deslocamento RGB ajustado para ${rgbDisplacementInput.value}px.`
+        : 'Deslocamento RGB desativado.'
+      );
     });
 
     frameInterpolationAmountInput.addEventListener('input', () => {
@@ -4308,6 +4351,27 @@
         setStatus('Interpolação de tempo desativada.');
       }
     });
+
+
+    [
+      vintageEffectSelect,
+      vintageIntensityInput,
+      exposureAdjustInput,
+      sharpnessAdjustInput,
+      glowAdjustInput,
+      rgbDisplacementInput,
+      retroWarmthAdjustInput,
+      retroFadeAdjustInput,
+      retroGrainAdjustInput,
+      retroVignetteAdjustInput
+    ].forEach((control) => {
+      if (!control) return;
+      control.addEventListener('change', () => {
+        if (!rawFrameCanvases.length || selectingKeypoints) return;
+        refreshPreviewAfterCreativeChange();
+      });
+    });
+
 
     candidateAssistToggle.addEventListener('change', () => {
       candidateAssistPoints = [];
@@ -5003,7 +5067,7 @@
       const grainCtx = canvasElement.getContext('2d');
       const image = grainCtx.getImageData(0, 0, canvasElement.width, canvasElement.height);
       const data = image.data;
-      const amount = (grain / 100) * 34;
+      const amount = (grain / 100) * 58;
 
       for (let i = 0; i < data.length; i += 4) {
         const noise = (Math.random() - 0.5) * amount;

@@ -335,3 +335,11 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
 - título e descrição visíveis mesmo recolhidos;
 - chevron discreto à direita;
 - visual mais elegante e coerente com o restante da interface.
+
+
+## Correção — preview ao vivo no modo Retro
+
+- Presets da Lente Retro agora forçam o redesenho imediato do preview.
+- Temperatura, matte, granulado, vinheta, exposição, nitidez, glow e RGB atualizam o preview ao vivo.
+- O redesenho foi centralizado em uma função de refresh para evitar que o resultado só apareça depois de clicar no canvas.
+- As receitas Retro foram intensificadas para gerar uma mudança visual mais clara.
