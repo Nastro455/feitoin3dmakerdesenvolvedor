@@ -337,9 +337,9 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
 - visual mais elegante e coerente com o restante da interface.
 
 
-## Correção — preview ao vivo no modo Retro
+## Correção — receitas Retro clicáveis
 
-- Presets da Lente Retro agora forçam o redesenho imediato do preview.
-- Temperatura, matte, granulado, vinheta, exposição, nitidez, glow e RGB atualizam o preview ao vivo.
-- O redesenho foi centralizado em uma função de refresh para evitar que o resultado só apareça depois de clicar no canvas.
-- As receitas Retro foram intensificadas para gerar uma mudança visual mais clara.
+- Corrigida a ação dos botões de receitas prontas da Lente Retro.
+- Agora o clique é capturado por delegação global, evitando falhas quando o painel tem rolagem interna ou quando o layout muda.
+- As receitas aplicam os valores nos controles e forçam atualização do preview quando há imagem carregada.
+- Se não houver imagem carregada, a receita fica selecionada e será usada como base ao carregar a foto.
