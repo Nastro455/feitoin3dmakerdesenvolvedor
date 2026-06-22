@@ -343,3 +343,11 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
 - Agora o clique é capturado por delegação global, evitando falhas quando o painel tem rolagem interna ou quando o layout muda.
 - As receitas aplicam os valores nos controles e forçam atualização do preview quando há imagem carregada.
 - Se não houver imagem carregada, a receita fica selecionada e será usada como base ao carregar a foto.
+
+
+## Correção — ajustes manuais após receita Retro
+
+- Corrigido o comportamento em que temperatura, granulado, matte e vinheta só apareciam após mexer no Deslocamento RGB.
+- Adicionado listener universal para os controles Retro.
+- Criada atualização forçada do preview no modo Retro.
+- Agora os ajustes manuais aplicam imediatamente após uma receita pronta ser selecionada.
