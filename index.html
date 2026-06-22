@@ -147,7 +147,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: 390px minmax(0, 1fr);
+      grid-template-columns: 410px minmax(0, 1fr);
       gap: 18px;
       align-items: start;
     }
@@ -2101,6 +2101,73 @@
       }
     }
 
+    .retro-presets-field,
+    .retro-secondary-control {
+      display: block;
+    }
+
+    body:not(.lens-retro) .retro-presets-field,
+    body:not(.lens-retro) .retro-secondary-control,
+    body:not(.lens-retro) .retro-look-note {
+      display: none !important;
+    }
+
+    .retro-preset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .retro-preset-btn {
+      min-height: 74px;
+      justify-content: flex-start;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 209, 102, .16);
+      background: linear-gradient(180deg, rgba(255,209,102,.09), rgba(255,255,255,.03));
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.35;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .retro-preset-btn strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+      color: #ffd166;
+    }
+
+    .retro-preset-btn.active {
+      border-color: rgba(255, 209, 102, .45);
+      box-shadow: 0 0 0 1px rgba(255,209,102,.28), 0 18px 36px rgba(0,0,0,.18);
+      transform: translateY(-1px);
+    }
+
+    .retro-look-note {
+      margin-top: 10px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,209,102,.16);
+      background: rgba(255,209,102,.07);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .retro-look-note strong {
+      color: #ffd166;
+    }
+
+    @media (max-width: 780px) {
+      .retro-preset-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
     .mac-install-modal {
       position: fixed;
       inset: 0;
@@ -2239,6 +2306,66 @@
       }
     }
 
+  
+    /* Correção — proporção dos painéis recolhíveis */
+    .tool-groups {
+      align-content: start;
+    }
+
+    .tool-group {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    .tool-group:not([open]) {
+      min-height: 0 !important;
+      height: auto !important;
+    }
+
+    .tool-group:not([open]) .tool-group-content {
+      display: none !important;
+    }
+
+    .tool-group summary {
+      min-height: 0 !important;
+      height: auto !important;
+      padding: 12px 14px !important;
+      align-items: center !important;
+    }
+
+    .tool-group-title,
+    .tool-group-title > div {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .tool-group-title strong,
+    .tool-group-title span {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: initial;
+    }
+
+    .tool-group-title span {
+      line-height: 1.35;
+    }
+
+    @media (min-width: 681px) {
+      .tool-group summary {
+        min-height: 66px !important;
+      }
+
+      .tool-group:not([open]) summary {
+        min-height: 62px !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .tool-group summary {
+        min-height: 64px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -2295,6 +2422,11 @@
               <div class="retro-mode-note">
                 <strong>Editor da Lente Retro</strong>
                 <p>Use este modo para tratar fotos da Lente Retro com estética analógica. Carregue a imagem, ajuste luz, nitidez, glow, LUT, cor e exporte em JPG alto.</p>
+              </div>
+
+              <div class="retro-look-note">
+                <strong>Looks recomendados da Lente Retro</strong>
+                Use as receitas prontas no painel de estilo para chegar mais rápido a resultados como as referências: low light esverdeado, flash de festa, golden hour e nostalgia de quarto.
               </div>
 
               <label class="dropzone" id="dropzone">
@@ -2429,6 +2561,58 @@
                   <output id="glowAdjustValue">0%</output>
                 </div>
               </div>
+
+              <div class="field retro-presets-field">
+                <label>Receitas prontas da Lente Retro</label>
+                <div class="retro-preset-grid">
+                  <button class="secondary retro-preset-btn" type="button" data-retro-preset="greenroom">
+                    <span><strong>01 — Low light verde</strong>Sombras profundas, clima de quarto e tom frio/esverdeado.</span>
+                  </button>
+                  <button class="secondary retro-preset-btn" type="button" data-retro-preset="flashparty">
+                    <span><strong>02 — Flash de festa</strong>Contraste mais alto, pele viva e impacto de flash direto.</span>
+                  </button>
+                  <button class="secondary retro-preset-btn" type="button" data-retro-preset="goldenhour">
+                    <span><strong>03 — Golden retrô</strong>Luz quente, brilho solar e nostalgia suave ao ar livre.</span>
+                  </button>
+                  <button class="secondary retro-preset-btn" type="button" data-retro-preset="nostalgicroom">
+                    <span><strong>04 — Quarto nostálgico</strong>Desbotado quente, granulado e sensação analógica íntima.</span>
+                  </button>
+                </div>
+                <p class="mini-note">Essas receitas usam os seus ajustes da Lente Retro como base. Depois, você ainda pode refinar manualmente cada controle.</p>
+              </div>
+
+              <div class="field retro-secondary-control">
+                <label for="retroWarmthAdjust">Temperatura / tom quente-frio</label>
+                <div class="range-row">
+                  <input id="retroWarmthAdjust" type="range" min="-100" max="100" value="0" step="5" />
+                  <output id="retroWarmthAdjustValue">0</output>
+                </div>
+              </div>
+
+              <div class="field retro-secondary-control">
+                <label for="retroFadeAdjust">Pretos desbotados / matte</label>
+                <div class="range-row">
+                  <input id="retroFadeAdjust" type="range" min="0" max="100" value="0" step="5" />
+                  <output id="retroFadeAdjustValue">0%</output>
+                </div>
+              </div>
+
+              <div class="field retro-secondary-control">
+                <label for="retroGrainAdjust">Granulado extra</label>
+                <div class="range-row">
+                  <input id="retroGrainAdjust" type="range" min="0" max="100" value="0" step="5" />
+                  <output id="retroGrainAdjustValue">0%</output>
+                </div>
+              </div>
+
+              <div class="field retro-secondary-control">
+                <label for="retroVignetteAdjust">Vinheta / escurecer bordas</label>
+                <div class="range-row">
+                  <input id="retroVignetteAdjust" type="range" min="0" max="100" value="0" step="5" />
+                  <output id="retroVignetteAdjustValue">0%</output>
+                </div>
+              </div>
+
 
               <div class="field">
                 <label for="rgbDisplacement">Deslocamento RGB 3D</label>
@@ -2776,6 +2960,15 @@
     const sharpnessAdjustValue = document.querySelector('#sharpnessAdjustValue');
     const glowAdjustInput = document.querySelector('#glowAdjust');
     const glowAdjustValue = document.querySelector('#glowAdjustValue');
+    const retroWarmthAdjustInput = document.querySelector('#retroWarmthAdjust');
+    const retroWarmthAdjustValue = document.querySelector('#retroWarmthAdjustValue');
+    const retroFadeAdjustInput = document.querySelector('#retroFadeAdjust');
+    const retroFadeAdjustValue = document.querySelector('#retroFadeAdjustValue');
+    const retroGrainAdjustInput = document.querySelector('#retroGrainAdjust');
+    const retroGrainAdjustValue = document.querySelector('#retroGrainAdjustValue');
+    const retroVignetteAdjustInput = document.querySelector('#retroVignetteAdjust');
+    const retroVignetteAdjustValue = document.querySelector('#retroVignetteAdjustValue');
+    const retroPresetButtons = Array.from(document.querySelectorAll('[data-retro-preset]'));
     const rgbDisplacementInput = document.querySelector('#rgbDisplacement');
     const rgbDisplacementValue = document.querySelector('#rgbDisplacementValue');
     const frameInterpolationAmountInput = document.querySelector('#frameInterpolationAmount');
@@ -2864,6 +3057,79 @@
     let fineAdjustMinimized = true;
     let fineAdjustVisible = true;
 
+    let activeRetroPreset = null;
+
+    function setRetroPresetButtonState(presetName) {
+      activeRetroPreset = presetName || null;
+      retroPresetButtons.forEach((button) => {
+        button.classList.toggle('active', button.dataset.retroPreset === activeRetroPreset);
+      });
+    }
+
+    function updateRetroControlLabels() {
+      const warmth = Number(retroWarmthAdjustInput.value || 0);
+      retroWarmthAdjustValue.textContent = warmth > 0 ? `+${warmth}` : `${warmth}`;
+      retroFadeAdjustValue.textContent = `${Number(retroFadeAdjustInput.value || 0)}%`;
+      retroGrainAdjustValue.textContent = `${Number(retroGrainAdjustInput.value || 0)}%`;
+      retroVignetteAdjustValue.textContent = `${Number(retroVignetteAdjustInput.value || 0)}%`;
+    }
+
+    function applyRetroRecipe(presetName, announce = true) {
+      const recipes = {
+        greenroom: {
+          vintageEffect: 'fuji', vintageIntensity: 75, exposure: -10, sharpness: 5, glow: 0,
+          warmth: -20, fade: 18, grain: 40, vignette: 28, rgb: 0,
+          message: 'Receita “Low light verde” aplicada. Ótima para quarto escuro com tom frio e climão analógico.'
+        },
+        flashparty: {
+          vintageEffect: 'slide', vintageIntensity: 80, exposure: 8, sharpness: 20, glow: 6,
+          warmth: 8, fade: 6, grain: 28, vignette: 12, rgb: 0,
+          message: 'Receita “Flash de festa” aplicada. Ideal para retratos com flash direto, contraste forte e pele destacada.'
+        },
+        goldenhour: {
+          vintageEffect: 'kodak', vintageIntensity: 72, exposure: 10, sharpness: 8, glow: 42,
+          warmth: 35, fade: 18, grain: 22, vignette: 22, rgb: 0,
+          message: 'Receita “Golden retrô” aplicada. Excelente para luz do pôr do sol e brilho nostálgico.'
+        },
+        nostalgicroom: {
+          vintageEffect: 'faded', vintageIntensity: 78, exposure: 5, sharpness: 0, glow: 12,
+          warmth: 22, fade: 30, grain: 48, vignette: 18, rgb: 0,
+          message: 'Receita “Quarto nostálgico” aplicada. Entrega desfoque suave, matte quente e granulado retrô.'
+        }
+      };
+
+      const config = recipes[presetName];
+      if (!config) return;
+
+      vintageEffectSelect.value = config.vintageEffect;
+      vintageIntensityInput.value = String(config.vintageIntensity);
+      vintageIntensityValue.textContent = `${config.vintageIntensity}%`;
+      exposureAdjustInput.value = String(config.exposure);
+      exposureAdjustValue.textContent = config.exposure > 0 ? `+${config.exposure}` : `${config.exposure}`;
+      sharpnessAdjustInput.value = String(config.sharpness);
+      sharpnessAdjustValue.textContent = `${config.sharpness}%`;
+      glowAdjustInput.value = String(config.glow);
+      glowAdjustValue.textContent = `${config.glow}%`;
+      retroWarmthAdjustInput.value = String(config.warmth);
+      retroFadeAdjustInput.value = String(config.fade);
+      retroGrainAdjustInput.value = String(config.grain);
+      retroVignetteAdjustInput.value = String(config.vignette);
+      rgbDisplacementInput.value = String(config.rgb);
+      rgbDisplacementValue.textContent = `${config.rgb}px`;
+      updateRetroControlLabels();
+      setRetroPresetButtonState(presetName);
+
+      if (rawFrameCanvases.length && !selectingKeypoints) {
+        rebuildFinalFrames();
+        startPreview();
+      }
+
+      if (announce) {
+        setStatus(config.message);
+      }
+    }
+
+
     const KEYPOINT_HINT_SEEN_KEY = 'feitoin3d-keypoint-hint-seen';
 
     const setStatus = (text) => statusEl.textContent = text;
@@ -2911,6 +3177,8 @@
         exportFormatSelect.value = 'mp4';
         exportJpgBtn.style.display = 'none';
         generateBtn.textContent = 'Exportar JPG alto';
+        setRetroPresetButtonState(activeRetroPreset);
+        updateRetroControlLabels();
       } else {
         if (importTitle) importTitle.textContent = 'Importar e alinhar imagem';
         if (importDescription) importDescription.textContent = 'Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.';
@@ -3147,6 +3415,7 @@
     });
 
     vintageEffectSelect.addEventListener('change', () => {
+      if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       rebuildFinalFrames();
       startPreview();
@@ -3157,6 +3426,7 @@
 
     vintageIntensityInput.addEventListener('input', () => {
       vintageIntensityValue.textContent = `${vintageIntensityInput.value}%`;
+      if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       rebuildFinalFrames();
       startPreview();
@@ -3212,6 +3482,7 @@
     exposureAdjustInput.addEventListener('input', () => {
       const exposure = Number(exposureAdjustInput.value);
       exposureAdjustValue.textContent = exposure > 0 ? `+${exposure}` : `${exposure}`;
+      if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       rebuildFinalFrames();
       startPreview();
@@ -3227,6 +3498,7 @@
     sharpnessAdjustInput.addEventListener('input', () => {
       const sharpness = Number(sharpnessAdjustInput.value);
       sharpnessAdjustValue.textContent = `${sharpness}%`;
+      if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       rebuildFinalFrames();
       startPreview();
@@ -3240,6 +3512,7 @@
     glowAdjustInput.addEventListener('input', () => {
       const glow = Number(glowAdjustInput.value);
       glowAdjustValue.textContent = `${glow}%`;
+      if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       rebuildFinalFrames();
       startPreview();
@@ -3252,6 +3525,7 @@
 
     rgbDisplacementInput.addEventListener('input', () => {
       rgbDisplacementValue.textContent = `${rgbDisplacementInput.value}px`;
+      if (currentLensMode === 'retro') setRetroPresetButtonState(null);
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       rebuildFinalFrames();
       startPreview();
@@ -3264,6 +3538,7 @@
 
     frameInterpolationAmountInput.addEventListener('input', () => {
       frameInterpolationAmountValue.textContent = `${frameInterpolationAmountInput.value}%`;
+    updateRetroControlLabels();
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       startPreview();
       if (Number(frameInterpolationAmountInput.value) > 0) {
@@ -3563,9 +3838,13 @@
 
         applyVintageEffect(output, vintageEffectSelect.value);
         applyExposureAdjustment(output);
+        applyRetroWarmthAdjustment(output);
         applyCustomLut(output);
+        applyRetroFadeAdjustment(output);
         applySharpnessAdjustment(output);
         applyGlowEffect(output);
+        applyRetroExtraGrain(output);
+        applyRetroVignette(output);
         applyRgbDisplacement(output);
         applyBorderWatermark(output);
         return output;
@@ -3898,6 +4177,102 @@
       }
 
       exposureCtx.putImageData(image, 0, 0);
+    }
+
+    function applyRetroWarmthAdjustment(canvasElement) {
+      const warmth = Number(retroWarmthAdjustInput.value || 0);
+      if (warmth === 0) return;
+
+      const warmthCtx = canvasElement.getContext('2d');
+      const image = warmthCtx.getImageData(0, 0, canvasElement.width, canvasElement.height);
+      const data = image.data;
+      const amount = warmth / 100;
+
+      for (let i = 0; i < data.length; i += 4) {
+        let r = data[i];
+        let g = data[i + 1];
+        let b = data[i + 2];
+
+        if (amount > 0) {
+          r = r + 36 * amount;
+          g = g + 12 * amount;
+          b = b - 32 * amount;
+        } else {
+          const cool = Math.abs(amount);
+          r = r - 24 * cool;
+          g = g + 4 * cool;
+          b = b + 34 * cool;
+        }
+
+        data[i] = clamp(Math.round(r), 0, 255);
+        data[i + 1] = clamp(Math.round(g), 0, 255);
+        data[i + 2] = clamp(Math.round(b), 0, 255);
+      }
+
+      warmthCtx.putImageData(image, 0, 0);
+    }
+
+    function applyRetroFadeAdjustment(canvasElement) {
+      const fade = Number(retroFadeAdjustInput.value || 0);
+      if (fade <= 0) return;
+
+      const fadeCtx = canvasElement.getContext('2d');
+      const image = fadeCtx.getImageData(0, 0, canvasElement.width, canvasElement.height);
+      const data = image.data;
+      const fadeStrength = fade / 100;
+      const lift = 42 * fadeStrength;
+
+      for (let i = 0; i < data.length; i += 4) {
+        for (let c = 0; c < 3; c++) {
+          const value = data[i + c];
+          const faded = value + (lift * (1 - value / 255));
+          data[i + c] = clamp(Math.round((value * (1 - fadeStrength * 0.12)) + faded * (fadeStrength * 0.88)), 0, 255);
+        }
+      }
+
+      fadeCtx.putImageData(image, 0, 0);
+    }
+
+    function applyRetroExtraGrain(canvasElement) {
+      const grain = Number(retroGrainAdjustInput.value || 0);
+      if (grain <= 0) return;
+
+      const grainCtx = canvasElement.getContext('2d');
+      const image = grainCtx.getImageData(0, 0, canvasElement.width, canvasElement.height);
+      const data = image.data;
+      const amount = (grain / 100) * 34;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const noise = (Math.random() - 0.5) * amount;
+        data[i] = clamp(Math.round(data[i] + noise), 0, 255);
+        data[i + 1] = clamp(Math.round(data[i + 1] + noise), 0, 255);
+        data[i + 2] = clamp(Math.round(data[i + 2] + noise), 0, 255);
+      }
+
+      grainCtx.putImageData(image, 0, 0);
+    }
+
+    function applyRetroVignette(canvasElement) {
+      const vignette = Number(retroVignetteAdjustInput.value || 0);
+      if (vignette <= 0) return;
+
+      const vignetteCtx = canvasElement.getContext('2d');
+      const width = canvasElement.width;
+      const height = canvasElement.height;
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const radius = Math.sqrt(centerX * centerX + centerY * centerY);
+      const gradient = vignetteCtx.createRadialGradient(centerX, centerY, radius * 0.28, centerX, centerY, radius);
+      const alpha = 0.12 + (vignette / 100) * 0.42;
+
+      gradient.addColorStop(0, 'rgba(0,0,0,0)');
+      gradient.addColorStop(0.62, 'rgba(0,0,0,0)');
+      gradient.addColorStop(1, `rgba(0,0,0,${alpha.toFixed(3)})`);
+
+      vignetteCtx.save();
+      vignetteCtx.fillStyle = gradient;
+      vignetteCtx.fillRect(0, 0, width, height);
+      vignetteCtx.restore();
     }
 
     function applySharpnessAdjustment(canvasElement) {

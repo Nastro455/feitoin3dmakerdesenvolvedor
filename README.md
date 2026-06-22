@@ -267,3 +267,37 @@ O modo Retro contém:
 ### Suporte de arquivos
 
 O seletor de arquivos da Lente Retro aceita JPG, PNG, WEBP, HEIC/HEIF, TIFF e extensões RAW comuns de câmera. Alguns formatos RAW dependem do suporte do navegador; quando não for possível abrir diretamente, o usuário deve converter para JPG, TIFF, PNG ou HEIC antes de editar.
+
+
+## Correção — proporção dos painéis recolhíveis
+
+Corrigida a proporção visual dos painéis laterais recolhíveis após a adição da tela inicial Lente 3D / Lente Retro.
+
+- Painéis recolhidos voltam a ter altura compacta.
+- Conteúdo interno fica totalmente oculto quando o painel está fechado.
+- Títulos e descrições não ficam mais espremidos em faixas estranhas.
+- Coluna esquerda recebeu leve ajuste de largura no desktop.
+
+
+## Recursos novos para a Lente Retro
+
+Com base nas referências visuais enviadas, o modo **Lente Retro** agora conta com recursos para facilitar resultados parecidos com ensaios analógicos / flash vintage:
+
+### Receitas prontas
+- **01 — Low light verde**
+- **02 — Flash de festa**
+- **03 — Golden retrô**
+- **04 — Quarto nostálgico**
+
+### Novos controles criativos
+- **Temperatura / tom quente-frio**
+- **Pretos desbotados / matte**
+- **Granulado extra**
+- **Vinheta / escurecer bordas**
+
+### Fluxo sugerido
+1. Entrar em **Lente Retro**
+2. Carregar a foto
+3. Aplicar uma **receita pronta** como base
+4. Refinar exposição, LUT, nitidez, glow e novos controles retro
+5. Exportar em **JPG alto**
