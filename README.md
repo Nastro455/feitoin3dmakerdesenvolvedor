@@ -345,9 +345,9 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
 - Se não houver imagem carregada, a receita fica selecionada e será usada como base ao carregar a foto.
 
 
-## Correção — ajustes manuais após receita Retro
+## Correção definitiva — controles Retro
 
-- Corrigido o comportamento em que temperatura, granulado, matte e vinheta só apareciam após mexer no Deslocamento RGB.
-- Adicionado listener universal para os controles Retro.
-- Criada atualização forçada do preview no modo Retro.
-- Agora os ajustes manuais aplicam imediatamente após uma receita pronta ser selecionada.
+- Corrigido o ajuste manual após selecionar uma receita.
+- Temperatura, matte, granulado e vinheta agora têm listeners próprios.
+- O preview é redesenhado diretamente no canvas sem depender do controle RGB.
+- As receitas continuam funcionando e podem ser refinadas manualmente.

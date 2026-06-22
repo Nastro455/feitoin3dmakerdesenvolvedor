@@ -3180,14 +3180,6 @@
       text-transform: uppercase;
     }
 
-  
-    .retro-live-hint {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
   </style>
 </head>
 <body class="lens-gate-active">
@@ -3414,7 +3406,6 @@
                   </button>
                 </div>
                 <p class="mini-note">Essas receitas usam os seus ajustes da Lente Retro como base. Depois, você ainda pode refinar manualmente cada controle.</p>
-                <p class="retro-live-hint">Os controles abaixo atualizam o preview ao vivo após a receita selecionada.</p>
               </div>
 
               <div class="field retro-secondary-control">
@@ -3914,6 +3905,34 @@
       retroVignetteAdjustValue.textContent = `${Number(retroVignetteAdjustInput.value || 0)}%`;
     }
 
+
+    function forceRetroLiveUpdate(message = '') {
+      if (!rawFrameCanvases.length || selectingKeypoints) {
+        if (message) setStatus(message);
+        return;
+      }
+
+      clearInterval(animationTimer);
+      rebuildFinalFrames();
+
+      if (currentLensMode === 'retro') {
+        previewMode = 'frame';
+        selectedAdjustFrame = 0;
+      }
+
+      const frame = finalFrameCanvases[selectedAdjustFrame] || finalFrameCanvases[0];
+      if (frame) {
+        drawPreviewFrame(frame);
+      } else {
+        startPreview();
+      }
+
+      updateWorkflowStatus();
+      updateExportResultMeta();
+      if (message) setStatus(message);
+    }
+
+
     function applyRetroRecipe(presetName, announce = true) {
       const recipes = {
         greenroom: {
@@ -3959,14 +3978,8 @@
       updateRetroControlLabels();
       setRetroPresetButtonState(presetName);
 
-      if (rawFrameCanvases.length && !selectingKeypoints) {
-        rebuildFinalFrames();
-        startPreview();
-      }
-
-      if (announce) {
-        setStatus(config.message);
-      }
+      forceRetroLiveUpdate(announce ? config.message : 'Receita Retro aplicada no preview.');
+      setRetroPresetButtonState(presetName);
     }
 
 
@@ -4505,33 +4518,6 @@
     if (changeLensBtn) changeLensBtn.addEventListener('click', openLensGate);
 
 
-
-    const retroLiveControlIds = new Set([
-      'retroWarmthAdjust',
-      'retroFadeAdjust',
-      'retroGrainAdjust',
-      'retroVignetteAdjust'
-    ]);
-
-    document.addEventListener('input', (event) => {
-      if (!retroLiveControlIds.has(event.target?.id)) return;
-
-      const labels = {
-        retroWarmthAdjust: 'Temperatura atualizada no preview.',
-        retroFadeAdjust: `Pretos desbotados ajustados para ${event.target.value}%.`,
-        retroGrainAdjust: `Granulado extra ajustado para ${event.target.value}%.`,
-        retroVignetteAdjust: `Vinheta ajustada para ${event.target.value}%.`
-      };
-
-      forceRetroLiveUpdate(labels[event.target.id] || 'Ajuste Retro atualizado no preview.');
-    });
-
-    document.addEventListener('change', (event) => {
-      if (!retroLiveControlIds.has(event.target?.id)) return;
-      forceRetroLiveUpdate('Ajuste Retro aplicado no preview.');
-    });
-
-
     document.addEventListener('click', (event) => {
       const retroPresetButton = event.target.closest('[data-retro-preset]');
       if (!retroPresetButton) return;
@@ -4545,6 +4531,30 @@
       }
 
       applyRetroRecipe(retroPresetButton.dataset.retroPreset);
+    });
+
+
+
+    function handleRetroControlManualChange(target) {
+      if (!target || currentLensMode !== 'retro') return;
+
+      updateRetroControlLabels();
+      setRetroPresetButtonState(null);
+
+      const messages = {
+        retroWarmthAdjust: 'Temperatura atualizada no preview.',
+        retroFadeAdjust: `Pretos desbotados ajustados para ${retroFadeAdjustInput.value}%.`,
+        retroGrainAdjust: `Granulado extra ajustado para ${retroGrainAdjustInput.value}%.`,
+        retroVignetteAdjust: `Vinheta ajustada para ${retroVignetteAdjustInput.value}%.`
+      };
+
+      forceRetroLiveUpdate(messages[target.id] || 'Ajuste Retro atualizado no preview.');
+    }
+
+    [retroWarmthAdjustInput, retroFadeAdjustInput, retroGrainAdjustInput, retroVignetteAdjustInput].forEach((control) => {
+      if (!control) return;
+      control.addEventListener('input', () => handleRetroControlManualChange(control));
+      control.addEventListener('change', () => handleRetroControlManualChange(control));
     });
 
 
@@ -5134,7 +5144,7 @@
       const grainCtx = canvasElement.getContext('2d');
       const image = grainCtx.getImageData(0, 0, canvasElement.width, canvasElement.height);
       const data = image.data;
-      const amount = (grain / 100) * 34;
+      const amount = (grain / 100) * 62;
 
       for (let i = 0; i < data.length; i += 4) {
         const noise = (Math.random() - 0.5) * amount;
