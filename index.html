@@ -3180,6 +3180,38 @@
       text-transform: uppercase;
     }
 
+  
+    /* Correção — ícones legíveis nos balões dos painéis */
+    .tool-group-title .tool-group-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: clip !important;
+      font-family: Helvetica, Arial, system-ui, sans-serif !important;
+      font-size: 19px !important;
+      line-height: 1 !important;
+      letter-spacing: 0 !important;
+      color: #eaf5ff !important;
+      text-align: center !important;
+    }
+
+    #stepCreativeGroup .tool-group-badge {
+      font-size: 18px !important;
+    }
+
+    .tool-group-title > div > span {
+      display: block !important;
+    }
+
+    /* Ajuste — um painel aberto por vez com rolagem interna confortável */
+    .tool-group[open] .tool-group-content {
+      max-height: min(54vh, 520px) !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -3236,7 +3268,7 @@
 <details class="tool-group" id="stepImportGroup" open>
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge">1</span>
+                <span class="tool-group-badge">↥</span>
                 <div>
                   <strong>Importar e alinhar imagem</strong>
                   <span>Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.</span>
@@ -3321,7 +3353,7 @@
           <details class="tool-group" id="stepCreativeGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge">3</span>
+                <span class="tool-group-badge">✦</span>
                 <div>
                   <strong>Estilo e acabamento</strong>
                   <span>Aplique filtros, LUT, exposição, nitidez, glow, RGB 3D e marca d'água.</span>
@@ -3479,7 +3511,7 @@
 <details class="tool-group" id="stepExportGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge">2</span>
+                <span class="tool-group-badge">↧</span>
                 <div>
                   <strong>Exportar arquivo</strong>
                   <span>Defina resolução, formato, duração e qualidade do arquivo final.</span>
@@ -4065,7 +4097,8 @@
       if (clearKeypointsBtn) clearKeypointsBtn.style.display = isRetro ? 'none' : '';
       if (fineAdjustOverlay) fineAdjustOverlay.style.display = isRetro ? 'none' : '';
 
-      updateExportControls();
+      setupExclusiveToolPanels();
+    updateExportControls();
       updateWorkflowStatus();
     }
 
@@ -4510,6 +4543,29 @@
       const file = event.dataTransfer.files?.[0];
       if (file) loadFile(file);
     });
+
+
+    function setupExclusiveToolPanels() {
+      const toolPanels = Array.from(document.querySelectorAll('.tool-group'));
+
+      toolPanels.forEach((panel) => {
+        panel.addEventListener('toggle', () => {
+          if (!panel.open) return;
+
+          toolPanels.forEach((otherPanel) => {
+            if (otherPanel !== panel) {
+              otherPanel.open = false;
+            }
+          });
+
+          const panelContent = panel.querySelector('.tool-group-content');
+          if (panelContent) {
+            panelContent.scrollTop = 0;
+          }
+        });
+      });
+    }
+
 
     if (toolbar3dModeBtn) toolbar3dModeBtn.addEventListener('click', () => selectLensMode('3d'));
     if (toolbarRetroModeBtn) toolbarRetroModeBtn.addEventListener('click', () => selectLensMode('retro'));

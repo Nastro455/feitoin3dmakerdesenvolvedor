@@ -351,3 +351,14 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
 - Temperatura, matte, granulado e vinheta agora têm listeners próprios.
 - O preview é redesenhado diretamente no canvas sem depender do controle RGB.
 - As receitas continuam funcionando e podem ser refinadas manualmente.
+
+
+## Accordion exclusivo dos painéis
+
+- Agora, ao abrir um painel, os outros painéis recolhem automaticamente.
+- Isso evita que as opções desçam demais e fiquem inacessíveis.
+- A rolagem interna continua funcionando dentro do painel aberto.
+- Os balões azuis dos painéis foram trocados por símbolos legíveis:
+  - ↥ Importar / alinhar
+  - ✦ Estilo / acabamento
+  - ↧ Exportar
