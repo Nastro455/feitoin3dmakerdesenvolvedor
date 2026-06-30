@@ -3212,6 +3212,48 @@
       overscroll-behavior: contain !important;
     }
 
+  
+    /* Ajuste visual definitivo dos balões dos painéis */
+    .tool-group-title .tool-group-badge {
+      position: relative !important;
+      width: 40px !important;
+      min-width: 40px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      border-radius: 999px !important;
+      overflow: hidden !important;
+      flex: 0 0 40px !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: transparent !important;
+      text-indent: -9999px !important;
+      white-space: nowrap !important;
+      background: linear-gradient(180deg, rgba(77,160,255,.92), rgba(44,117,225,.92)) !important;
+      border: 1px solid rgba(255,255,255,.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px rgba(0,0,0,.18) !important;
+    }
+
+    .tool-group-title .tool-group-badge::before {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0;
+      color: #f4fbff;
+      text-shadow: 0 1px 0 rgba(0,0,0,.18);
+      text-indent: 0;
+      white-space: normal;
+    }
+
+    #stepImportGroup .tool-group-badge::before { content: "↥"; }
+    #stepCreativeGroup .tool-group-badge::before { content: "✦"; }
+    #stepExportGroup .tool-group-badge::before { content: "↧"; }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -3268,7 +3310,7 @@
 <details class="tool-group" id="stepImportGroup" open>
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge">↥</span>
+                <span class="tool-group-badge"></span>
                 <div>
                   <strong>Importar e alinhar imagem</strong>
                   <span>Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.</span>
@@ -3353,7 +3395,7 @@
           <details class="tool-group" id="stepCreativeGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge">✦</span>
+                <span class="tool-group-badge"></span>
                 <div>
                   <strong>Estilo e acabamento</strong>
                   <span>Aplique filtros, LUT, exposição, nitidez, glow, RGB 3D e marca d'água.</span>
@@ -3511,7 +3553,7 @@
 <details class="tool-group" id="stepExportGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge">↧</span>
+                <span class="tool-group-badge"></span>
                 <div>
                   <strong>Exportar arquivo</strong>
                   <span>Defina resolução, formato, duração e qualidade do arquivo final.</span>
@@ -3929,6 +3971,47 @@
       });
     }
 
+    
+    function resetCreativeSettings() {
+      activeRetroPreset = null;
+      setRetroPresetButtonState(null);
+
+      if (vintageEffectSelect) vintageEffectSelect.value = 'none';
+      if (vintageIntensityInput) vintageIntensityInput.value = '70';
+      if (vintageIntensityValue) vintageIntensityValue.textContent = '70%';
+
+      if (exposureAdjustInput) exposureAdjustInput.value = '0';
+      if (exposureAdjustValue) exposureAdjustValue.textContent = '0';
+
+      if (sharpnessAdjustInput) sharpnessAdjustInput.value = '0';
+      if (sharpnessAdjustValue) sharpnessAdjustValue.textContent = '0%';
+
+      if (glowAdjustInput) glowAdjustInput.value = '0';
+      if (glowAdjustValue) glowAdjustValue.textContent = '0%';
+
+      if (retroWarmthAdjustInput) retroWarmthAdjustInput.value = '0';
+      if (retroFadeAdjustInput) retroFadeAdjustInput.value = '0';
+      if (retroGrainAdjustInput) retroGrainAdjustInput.value = '0';
+      if (retroVignetteAdjustInput) retroVignetteAdjustInput.value = '0';
+      updateRetroControlLabels();
+
+      if (rgbDisplacementInput) rgbDisplacementInput.value = '0';
+      if (rgbDisplacementValue) rgbDisplacementValue.textContent = '0px';
+
+      if (frameInterpolationAmountInput) frameInterpolationAmountInput.value = '0';
+      if (frameInterpolationAmountValue) frameInterpolationAmountValue.textContent = '0%';
+
+      customLut = null;
+      if (customLutInput) customLutInput.value = '';
+      if (clearLutBtn) clearLutBtn.disabled = true;
+      if (lutStatus) lutStatus.textContent = 'Nenhum LUT carregado. Suporte principal: .CUBE e .3DL.';
+
+      if (watermarkEnabledInput) watermarkEnabledInput.checked = false;
+      if (watermarkTextInput) watermarkTextInput.value = 'Feito In 3D';
+      if (watermarkTextField) watermarkTextField.style.display = 'none';
+    }
+
+
     function updateRetroControlLabels() {
       const warmth = Number(retroWarmthAdjustInput.value || 0);
       retroWarmthAdjustValue.textContent = warmth > 0 ? `+${warmth}` : `${warmth}`;
@@ -4104,6 +4187,7 @@
 
     function selectLensMode(mode) {
       currentLensMode = mode;
+      resetCreativeSettings();
       resetAll();
       currentLensMode = mode;
       updateLensModeInterface();

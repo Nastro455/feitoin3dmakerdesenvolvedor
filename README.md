@@ -362,3 +362,21 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
   - ↥ Importar / alinhar
   - ✦ Estilo / acabamento
   - ↧ Exportar
+
+
+## Ajustes desta versão
+
+- Corrigido o visual dos balões azuis dos painéis com ícones limpos e centralizados.
+- Ao alternar entre **Lente 3D** e **Lente Retro**, todos os **ajustes criativos** são zerados automaticamente:
+  - filtro vintage / LUT
+  - intensidade
+  - exposição
+  - nitidez
+  - glow
+  - temperatura / warmth
+  - fade
+  - granulado
+  - vinheta
+  - RGB displacement
+  - interpolação de quadros
+  - marca d'água
