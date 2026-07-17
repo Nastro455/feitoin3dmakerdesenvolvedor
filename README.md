@@ -549,21 +549,17 @@ Se o vídeo exportado sair preto:
   - Shift + clique move 1px.
 
 
-## EXPERIMENTO — Preview Editor
+## Ajuste fino com design limpo restaurado
 
-Esta versão é uma experimentação de interface e **não deve ser usada como arquivo base para futuras modificações sem aprovação explícita**.
-
-### O que foi testado
-
-- O preview vira a área principal de edição.
-- Foram adicionados controles rápidos sobre o preview:
-  - Pausar / Reproduzir
-  - Ajuste fino
-  - Exportar
-- O painel lateral de demonstração foi ocultado para priorizar o editor.
-- O ajuste fino aparece como painel flutuante sobre o preview.
-- A navegação de frames e play/pause adicionada na versão anterior foi preservada.
-
-### Observação
-
-A versão base aprovada antes deste experimento continua sendo a anterior, a menos que a Joyce aprove esta nova estrutura.
+- Esta versão volta a partir da versão anterior ao experimento Preview Editor.
+- O painel de ajuste fino volta ao design limpo:
+  - título;
+  - botão Minimizar;
+  - botão compacto Reproduzir/Pausar no cabeçalho;
+  - navegação Preview / Frame 1 / Frame 2 / Frame 3;
+  - setas de ajuste.
+- Os botões grandes de pausa/reprodução foram removidos.
+- As funções recentes foram mantidas:
+  - clique normal move 4px;
+  - Shift + clique move 1px;
+  - é possível pausar e retomar a reprodução do GIF.

@@ -3982,146 +3982,123 @@
     }
 
   
-    /* EXPERIMENTO — Preview como área principal de edição
-       Esta versão é propositalmente experimental e não deve virar base sem aprovação. */
-    body.preview-editor-experiment .preview-wrap {
-      grid-template-columns: minmax(0, 1fr) !important;
+    /* Ajuste fino — design limpo com funções de frame e play/pause */
+    .fine-adjust-head {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 10px !important;
     }
 
-    body.preview-editor-experiment .demo-side-column {
+    .fine-adjust-head-actions {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      flex: 0 0 auto !important;
+    }
+
+    .preview-playback-inline {
+      min-height: 34px !important;
+      padding: 8px 12px !important;
+      border-radius: 999px !important;
+      font-size: 12px !important;
+      font-weight: 900 !important;
+      white-space: nowrap !important;
+      width: auto !important;
+    }
+
+    .preview-playback-controls,
+    .preview-playback-btn {
       display: none !important;
     }
 
-    body.preview-editor-experiment .preview-main-column {
-      display: grid;
-      gap: 12px;
+    .fine-adjust-panel {
+      width: min(420px, calc(100vw - 24px)) !important;
+      max-width: min(420px, calc(100vw - 24px)) !important;
     }
 
-    body.preview-editor-experiment .canvas-box {
-      position: relative;
-      min-height: min(760px, calc(100vh - 190px));
-      overflow: hidden;
-      border-color: rgba(30,155,255,.30);
-      box-shadow: 0 24px 70px rgba(0,0,0,.38), inset 0 0 0 1px rgba(142,203,255,.08);
+    .fine-adjust-panel:not(.minimized) {
+      padding: 14px !important;
+      border-radius: 22px !important;
     }
 
-    body.preview-editor-experiment #previewCanvas {
-      max-height: calc(100vh - 220px);
+    .fine-adjust-mini {
+      margin: 10px 0 12px !important;
+      line-height: 1.38 !important;
     }
 
-    .preview-editor-toolbar {
-      position: absolute;
-      left: 14px;
-      right: 14px;
-      top: 14px;
-      z-index: 12;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px;
-      border-radius: 18px;
-      border: 1px solid rgba(142,203,255,.18);
-      background: rgba(6,20,38,.72);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 14px 38px rgba(0,0,0,.28);
-      pointer-events: auto;
+    .frame-jump-buttons {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin: 10px 0 14px !important;
     }
 
-    .preview-editor-kicker {
-      display: grid;
-      gap: 2px;
-      min-width: 0;
+    .frame-jump-buttons button {
+      min-height: 36px !important;
+      padding: 8px 12px !important;
+      border-radius: 999px !important;
+      font-size: 12px !important;
+      width: auto !important;
+      flex: 0 0 auto !important;
     }
 
-    .preview-editor-kicker span {
-      color: var(--warning);
-      font-size: 10px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+    .frame-jump-buttons button.active {
+      background: var(--accent) !important;
+      color: #fff !important;
+      border-color: rgba(142,203,255,.55) !important;
     }
 
-    .preview-editor-kicker strong {
-      color: var(--text);
-      font-size: 14px;
-      letter-spacing: -.02em;
+    .nudge-grid {
+      width: 154px !important;
+      margin: 10px auto 0 !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, 46px) !important;
+      gap: 8px !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
-    .preview-editor-actions {
-      display: inline-flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+    .nudge-grid .placeholder {
+      display: block !important;
+      width: 46px !important;
+      height: 46px !important;
+      visibility: hidden !important;
     }
 
-    .preview-editor-actions button {
-      min-height: 36px;
-      padding: 8px 12px;
-      border-radius: 13px;
-      font-size: 12px;
-      white-space: nowrap;
+    .nudge-btn {
+      width: 46px !important;
+      height: 46px !important;
+      min-height: 46px !important;
+      padding: 0 !important;
+      border-radius: 14px !important;
+      display: grid !important;
+      place-items: center !important;
+      font-size: 18px !important;
     }
 
-    body.preview-editor-experiment .fine-adjust-overlay {
-      top: 76px;
-      right: 14px;
-      left: auto;
-      width: min(390px, calc(100% - 28px));
-      z-index: 15;
-    }
-
-    body.preview-editor-experiment .preview-point-actions-card {
-      display: none;
-    }
-
-    body.preview-editor-experiment .frames-card {
-      display: none;
-    }
-
-    body.preview-editor-experiment .preview-download.show {
-      z-index: 18;
-    }
-
-    @media (min-width: 981px) {
-      body.preview-editor-experiment .grid {
-        grid-template-columns: 330px minmax(0, 1fr) !important;
-      }
-
-      body.preview-editor-experiment .grid > aside.card {
-        max-height: calc(100vh - 32px);
-      }
+    .nudge-btn.reset-offset {
+      font-size: 12px !important;
+      font-weight: 900 !important;
     }
 
     @media (max-width: 680px) {
-      body.preview-editor-experiment .preview-editor-toolbar {
-        left: 10px;
-        right: 10px;
-        top: 10px;
-        align-items: stretch;
-        flex-direction: column;
+      .fine-adjust-panel {
+        width: calc(100vw - 24px) !important;
       }
 
-      body.preview-editor-experiment .preview-editor-actions {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        width: 100%;
+      .fine-adjust-head {
+        align-items: flex-start !important;
       }
 
-      body.preview-editor-experiment .preview-editor-actions button {
-        padding: 8px 7px;
-        font-size: 11px;
+      .fine-adjust-head-actions {
+        gap: 6px !important;
       }
 
-      body.preview-editor-experiment .canvas-box {
-        min-height: min(640px, calc(100vh - 120px));
-      }
-
-      body.preview-editor-experiment .fine-adjust-overlay {
-        top: 118px;
-        left: 10px;
-        right: 10px;
-        width: auto;
+      .preview-playback-inline,
+      .fine-adjust-toggle {
+        padding: 8px 10px !important;
+        font-size: 11px !important;
       }
     }
 
@@ -4563,19 +4540,6 @@
           <canvas id="previewCanvas"></canvas>
           <a class="preview-download" id="previewDownloadLink" download="feitoin3d-maker-padrao.gif">Baixar arquivo</a>
 
-          <div class="preview-editor-toolbar" id="previewEditorToolbar" aria-label="Controles rápidos do editor experimental">
-            <div class="preview-editor-kicker">
-              <span>Experimento de interface</span>
-              <strong>Preview Editor</strong>
-            </div>
-            <div class="preview-editor-actions">
-              <button class="secondary" id="editorPlayPauseBtn" type="button">Pausar</button>
-              <button class="secondary" id="editorFineAdjustBtn" type="button">Ajuste fino</button>
-              <button class="blue" id="editorExportBtn" type="button">Exportar</button>
-            </div>
-          </div>
-
-
           <div class="keypoint-hint-overlay" id="keypointHintOverlay" aria-hidden="true">
             <div class="keypoint-hint-card">
               <div class="keypoint-target" style="display:none;"></div>
@@ -4588,13 +4552,12 @@
             <div class="fine-adjust-panel">
               <div class="fine-adjust-head">
                 <strong>Ajuste fino por frame</strong>
-                <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
+                <div class="fine-adjust-head-actions">
+                  <button class="secondary preview-playback-inline" id="previewPlaybackToggle" type="button">Reproduzir</button>
+                  <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
+                </div>
               </div>
-              <p class="fine-adjust-mini">Use as setas para corrigir o frame com resposta mais rápida. Clique normal move 4px; Shift + clique move 1px.</p>
-              <div class="preview-playback-controls">
-                <button class="secondary preview-playback-btn" id="previewPlaybackToggle" type="button">Pausar preview</button>
-                <button class="secondary preview-playback-btn" id="previewPlaybackResume" type="button">Reproduzir GIF</button>
-              </div>
+              <p class="fine-adjust-mini">Escolha um frame para ajuste rápido e use as setas para corrigir tremidos finos sobre o preview. Clique normal move 4px; Shift + clique move 1px.</p>
               <div class="frame-jump-buttons" id="frameJumpButtons"></div>
               <div class="nudge-grid">
                 <span class="placeholder" style="display:none;"></span>
@@ -4847,10 +4810,6 @@
     const resetFramingBtn = document.querySelector('#resetFramingBtn');
     const fineAdjustCloseBtn = document.querySelector('#fineAdjustCloseBtn');
     const previewPlaybackToggleBtn = document.querySelector('#previewPlaybackToggle');
-    const previewPlaybackResumeBtn = document.querySelector('#previewPlaybackResume');
-    const editorPlayPauseBtn = document.querySelector('#editorPlayPauseBtn');
-    const editorFineAdjustBtn = document.querySelector('#editorFineAdjustBtn');
-    const editorExportBtn = document.querySelector('#editorExportBtn');
     const stepImportGroup = document.querySelector('#stepImportGroup');
     const stepExportGroup = document.querySelector('#stepExportGroup');
     const stepCreativeGroup = document.querySelector('#stepCreativeGroup');
@@ -5124,8 +5083,7 @@
       applyUnifiedPanelLayout();
       refreshUnifiedPanelTexts();
       setupExclusiveToolPanels();
-      document.body.classList.add('preview-editor-experiment');
-    updateExportControls();
+      updateExportControls();
       updateWorkflowStatus();
       applyMobileMinimalExperience();
     }
@@ -5244,38 +5202,12 @@
     }
 
 
-
-    function updateEditorToolbarState() {
-      if (!editorPlayPauseBtn || !editorExportBtn || !editorFineAdjustBtn) return;
+    function updatePreviewPlaybackButtons() {
+      if (!previewPlaybackToggleBtn) return;
       const hasFrames = finalFrameCanvases.length > 0;
       const isAnimated = previewMode === 'animated' && Boolean(animationTimer);
-
-      editorPlayPauseBtn.textContent = isAnimated ? 'Pausar' : 'Reproduzir';
-      editorPlayPauseBtn.disabled = !hasFrames;
-      editorFineAdjustBtn.disabled = !hasFrames || currentLensMode === 'retro';
-      editorExportBtn.disabled = generateBtn.disabled || !hasFrames;
-      editorExportBtn.textContent = currentLensMode === 'retro' ? 'Exportar foto' : 'Exportar';
-    }
-
-    function toggleEditorPlayback() {
-      if (!finalFrameCanvases.length) return;
-      if (previewMode === 'animated' && animationTimer) {
-        pausePreviewOnCurrentFrame();
-      } else {
-        resumeAnimatedPreview();
-      }
-      updateEditorToolbarState();
-    }
-
-
-    function updatePreviewPlaybackButtons() {
-      if (!previewPlaybackToggleBtn || !previewPlaybackResumeBtn) return;
-      const isAnimated = previewMode === 'animated' && Boolean(animationTimer);
-      previewPlaybackToggleBtn.textContent = isAnimated ? 'Pausar preview' : 'Preview pausado';
-      previewPlaybackResumeBtn.textContent = 'Reproduzir GIF';
-      previewPlaybackResumeBtn.disabled = !finalFrameCanvases.length;
-      previewPlaybackToggleBtn.disabled = !finalFrameCanvases.length;
-      updateEditorToolbarState();
+      previewPlaybackToggleBtn.textContent = isAnimated ? 'Pausar' : 'Reproduzir';
+      previewPlaybackToggleBtn.disabled = !hasFrames;
     }
 
     function pausePreviewOnCurrentFrame() {
@@ -5591,26 +5523,6 @@
     });
 
 
-
-    if (editorPlayPauseBtn) {
-      editorPlayPauseBtn.addEventListener('click', toggleEditorPlayback);
-    }
-
-    if (editorFineAdjustBtn) {
-      editorFineAdjustBtn.addEventListener('click', openFineAdjustPanel);
-    }
-
-    if (editorExportBtn) {
-      editorExportBtn.addEventListener('click', () => {
-        if (generateBtn.disabled) {
-          setStatus('Carregue e prepare a imagem antes de exportar.');
-          return;
-        }
-        generateExport();
-      });
-    }
-
-
     if (previewPlaybackToggleBtn) {
       previewPlaybackToggleBtn.addEventListener('click', () => {
         if (previewMode === 'animated' && animationTimer) {
@@ -5619,10 +5531,6 @@
           resumeAnimatedPreview();
         }
       });
-    }
-
-    if (previewPlaybackResumeBtn) {
-      previewPlaybackResumeBtn.addEventListener('click', resumeAnimatedPreview);
     }
 
 
