@@ -3889,15 +3889,41 @@
       display: block !important;
     }
 
+  
+    /* Botões de compra das lentes */
+    .buy-lenses-row,
+    .app-actions,
+    .hero-actions {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .retro-buy-link {
+      background: linear-gradient(180deg, rgba(255,209,102,.22), rgba(255,255,255,.06)) !important;
+      border-color: rgba(255,209,102,.34) !important;
+    }
+
+    .retro-buy-link:hover {
+      border-color: rgba(255,209,102,.64) !important;
+    }
+
+    @media (max-width: 680px) {
+      .buy-lenses-row {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
   <main class="app">
     <header>
       <div class="badge-row">
-        <div class="badge">Feito In 3D • ferramenta experimental</div>
+        <div class="badge" style="display:none;"></div>
         <a class="social-link" href="https://www.instagram.com/feitoin3d/" target="_blank" rel="noopener noreferrer">Instagram Feito In 3D</a>
-        <a class="social-link buy-link" href="https://www.mercadolivre.com.br/lente-3d-para-producao-de-gifs-canon-sony-nikon-fuji/up/MLBU3825732714" target="_blank" rel="noopener noreferrer">Compre sua lente</a>
+        <a class="social-link buy-link" href="https://www.mercadolivre.com.br/lente-3d-para-producao-de-gifs-canon-sony-nikon-fuji/up/MLBU3825732714" target="_blank" rel="noopener noreferrer">Comprar Lente 3D</a>
+<a class="social-link buy-link retro-buy-link" href="https://www.mercadolivre.com.br/lente-retro-30mm-feitoin3d-canon-sony-nikon-fuji/up/MLBU3825743208#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=1&type=product&tracking_id=6a1e9caa-25cc-47cc-ade7-fb764a2a25c4&wid=MLB4502712035&sid=search" target="_blank" rel="noopener noreferrer">Comprar Lente Retro</a>
         <button class="social-link lens-change-btn" id="changeLensBtn" type="button">Trocar lente</button>
       </div>
       <h1>Feitoin3d <span>Maker <i class="br-flag" aria-label="Brasil" title="Brasil"></i></span></h1>
@@ -3945,7 +3971,7 @@
 <details class="tool-group" id="stepImportGroup" open>
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge"></span></span>
+                <span class="tool-group-badge" style="display:none;"></span></span>
                 <div>
                   <strong>Importar e alinhar imagem</strong>
                   <span>Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.</span>
@@ -4005,7 +4031,7 @@
                 <div class="switch-row">
                   <label class="switch-control" for="candidateAssistToggle">
                     <input id="candidateAssistToggle" type="checkbox" checked />
-                    <span class="switch-slider"></span>
+                    <span class="switch-slider" style="display:none;"></span>
                   </label>
                   <span class="switch-label-text">Mapear possíveis pontos iguais no 1º frame e permitir clique assistido</span>
                 </div>
@@ -4030,7 +4056,7 @@
           <details class="tool-group" id="stepCreativeGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge"></span></span>
+                <span class="tool-group-badge" style="display:none;"></span></span>
                 <div>
                   <strong>Estilo e acabamento</strong>
                   <span>Aplique filtros, LUT, exposição, nitidez, glow, RGB 3D e marca d'água.</span>
@@ -4183,7 +4209,7 @@
                 <div class="switch-row">
                   <label class="switch-control" for="watermarkEnabled">
                     <input id="watermarkEnabled" type="checkbox" />
-                    <span class="switch-slider"></span>
+                    <span class="switch-slider" style="display:none;"></span>
                   </label>
                   <span class="switch-label-text">Adicionar marca d'água repetida nas bordas do arquivo</span>
                 </div>
@@ -4199,7 +4225,7 @@
 <details class="tool-group" id="stepExportGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge"></span></span>
+                <span class="tool-group-badge" style="display:none;"></span></span>
                 <div>
                   <strong>Exportar arquivo</strong>
                   <span>Defina resolução, formato, duração e qualidade do arquivo final.</span>
@@ -4278,7 +4304,7 @@
                 <div class="switch-row">
                   <label class="switch-control" for="safeExportMode">
                     <input id="safeExportMode" type="checkbox" />
-                    <span class="switch-slider"></span>
+                    <span class="switch-slider" style="display:none;"></span>
                   </label>
                   <span class="switch-label-text">Ativar exportação compatível para evitar arquivo preto em alguns navegadores</span>
                 </div>
@@ -4328,7 +4354,7 @@
 
           <div class="keypoint-hint-overlay" id="keypointHintOverlay" aria-hidden="true">
             <div class="keypoint-hint-card">
-              <div class="keypoint-target"></div>
+              <div class="keypoint-target" style="display:none;"></div>
               <strong>Clique no ponto principal da imagem</strong>
               <p>Escolha um detalhe de alto contraste, como olho, logo, botão, parafuso ou canto da lente.</p>
             </div>
@@ -4341,17 +4367,17 @@
                 <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
               </div>
               <p class="fine-adjust-mini">Escolha um frame para ajuste rápido e use as setas para corrigir tremidos finos sobre o preview.</p>
-              <div class="frame-jump-buttons" id="frameJumpButtons"></div>
+              <div class="frame-jump-buttons" id="frameJumpButtons" style="display:none;"></div>
               <div class="nudge-grid">
-                <span class="placeholder"></span>
+                <span class="placeholder" style="display:none;"></span>
                 <button class="secondary nudge-btn" type="button" data-nudge="up">↑</button>
-                <span class="placeholder"></span>
+                <span class="placeholder" style="display:none;"></span>
                 <button class="secondary nudge-btn" type="button" data-nudge="left">←</button>
                 <button class="secondary nudge-btn reset-offset" type="button" data-nudge="reset">Reset</button>
                 <button class="secondary nudge-btn" type="button" data-nudge="right">→</button>
-                <span class="placeholder"></span>
+                <span class="placeholder" style="display:none;"></span>
                 <button class="secondary nudge-btn" type="button" data-nudge="down">↓</button>
-                <span class="placeholder"></span>
+                <span class="placeholder" style="display:none;"></span>
               </div>
             </div>
           </div>
@@ -4362,7 +4388,7 @@
               <strong id="exportOverlayTitle">Exportando arquivo Full HD</strong>
               <p id="exportOverlayText">Preparando os frames...</p>
               <div class="progress-track">
-                <div class="progress-bar" id="exportProgressBar"></div>
+                <div class="progress-bar" id="exportProgressBar" style="display:none;"></div>
               </div>
               <span id="exportElapsed">Tempo decorrido: 00:00</span>
             </div>
@@ -4371,7 +4397,7 @@
 
         <div class="card frames-card" id="framesCard">
           <label>Frames originais com pontos registrados</label>
-          <div class="frames" id="framesList"></div>
+          <div class="frames" id="framesList" style="display:none;"></div>
         </div>
         </div>
 

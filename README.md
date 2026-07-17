@@ -520,3 +520,11 @@ Se o vídeo exportado sair preto:
 - Não foi aplicada microvariação analógica.
 - O sistema agora usa uma curva mais suave entre os frames e evita interpolar a volta brusca quando o loop não está em ida-e-volta.
 - A quantidade de frames intermediários é definida automaticamente pela porcentagem da barra.
+
+
+## Botão de compra da Lente Retro
+
+- Removido o texto **Feito In 3D • ferramenta experimental** do site.
+- Atualizado o texto do botão da Lente 3D para **Comprar Lente 3D**.
+- Adicionado botão **Comprar Lente Retro** ao lado do botão da Lente 3D.
+- Link da Lente Retro: https://www.mercadolivre.com.br/lente-retro-30mm-feitoin3d-canon-sony-nikon-fuji/up/MLBU3825743208#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=1&type=product&tracking_id=6a1e9caa-25cc-47cc-ade7-fb764a2a25c4&wid=MLB4502712035&sid=search
