@@ -528,3 +528,12 @@ Se o vídeo exportado sair preto:
 - Atualizado o texto do botão da Lente 3D para **Comprar Lente 3D**.
 - Adicionado botão **Comprar Lente Retro** ao lado do botão da Lente 3D.
 - Link da Lente Retro: https://www.mercadolivre.com.br/lente-retro-30mm-feitoin3d-canon-sony-nikon-fuji/up/MLBU3825743208#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=1&type=product&tracking_id=6a1e9caa-25cc-47cc-ade7-fb764a2a25c4&wid=MLB4502712035&sid=search
+
+
+## Botão Retro branco e ajuste fino mais responsivo
+
+- O botão **Comprar Lente Retro** agora usa visual branco, igual ao botão da Lente 3D.
+- O ajuste fino por frame ficou mais responsivo:
+  - clique normal nas setas move 4px;
+  - Shift + clique move 1px para ajuste super fino.
+- A atualização do ajuste fino ficou mais leve, evitando redesenhar miniaturas a cada clique.

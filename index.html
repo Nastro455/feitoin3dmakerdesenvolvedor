@@ -3914,6 +3914,23 @@
       }
     }
 
+  
+    /* Compra Retro — mesma estética branca do botão da Lente 3D */
+    .social-link.retro-buy-link,
+    a.retro-buy-link {
+      background: rgba(255,255,255,.08) !important;
+      color: var(--text) !important;
+      border-color: rgba(255,255,255,.18) !important;
+      box-shadow: none !important;
+    }
+
+    .social-link.retro-buy-link:hover,
+    a.retro-buy-link:hover {
+      background: rgba(255,255,255,.12) !important;
+      color: var(--text) !important;
+      border-color: rgba(255,255,255,.32) !important;
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -4366,7 +4383,7 @@
                 <strong>Ajuste fino por frame</strong>
                 <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
               </div>
-              <p class="fine-adjust-mini">Escolha um frame para ajuste rápido e use as setas para corrigir tremidos finos sobre o preview.</p>
+              <p class="fine-adjust-mini">Use as setas para corrigir o frame com resposta mais rápida. Clique normal move 4px; Shift + clique move 1px.</p>
               <div class="frame-jump-buttons" id="frameJumpButtons" style="display:none;"></div>
               <div class="nudge-grid">
                 <span class="placeholder" style="display:none;"></span>
@@ -5328,13 +5345,17 @@
     });
 
     nudgeButtons.forEach((button) => {
-      button.addEventListener('click', () => {
+      button.addEventListener('click', (event) => {
         if (!rawFrameCanvases.length) return;
         const action = button.dataset.nudge;
         if (previewMode !== 'frame') {
           previewMode = 'frame';
         }
-        const step = 1;
+
+        // Resposta mais rápida: clique normal move 4px.
+        // Para ajuste super fino, segure Shift e clique para mover 1px.
+        const step = event.shiftKey ? 1 : 4;
+
         if (action === 'up') nudgeSelectedFrame(0, -step);
         if (action === 'down') nudgeSelectedFrame(0, step);
         if (action === 'left') nudgeSelectedFrame(-step, 0);
@@ -6707,7 +6728,6 @@
       current.dy += dy;
       manualFrameOffsets[selectedAdjustFrame] = current;
       rebuildFinalFrames();
-      renderFramesList();
       updateFineAdjustButtons();
       startPreview();
       setStatus(`Ajuste fino aplicado no Frame ${selectedAdjustFrame + 1}: X ${current.dx}px • Y ${current.dy}px.`);
