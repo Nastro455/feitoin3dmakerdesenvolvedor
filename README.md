@@ -584,3 +584,12 @@ Se o vídeo exportado sair preto:
 - O botão **Preview** da navegação agora se chama **Reproduzir**.
 - O visual das setas foi corrigido para voltar ao formato quadrado/limpo.
 - O painel continua minimizado por padrão e só mostra as ferramentas ao clicar em **Mostrar**.
+
+
+## Correção de overflow do painel de ajuste fino
+
+- O painel de ajuste fino foi limitado à largura do preview.
+- O painel não deve mais vazar para fora da tela.
+- O botão **Minimizar** permanece visível quando o painel está aberto.
+- Quando minimizado, aparece apenas o cabeçalho com **Mostrar**.
+- A navegação Reproduzir / Frame 1 / Frame 2 / Frame 3 e as setas foram mantidas.
