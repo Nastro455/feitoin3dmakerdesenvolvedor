@@ -547,3 +547,23 @@ Se o vídeo exportado sair preto:
 - O ajuste rápido por setas permanece:
   - clique normal move 4px;
   - Shift + clique move 1px.
+
+
+## EXPERIMENTO — Preview Editor
+
+Esta versão é uma experimentação de interface e **não deve ser usada como arquivo base para futuras modificações sem aprovação explícita**.
+
+### O que foi testado
+
+- O preview vira a área principal de edição.
+- Foram adicionados controles rápidos sobre o preview:
+  - Pausar / Reproduzir
+  - Ajuste fino
+  - Exportar
+- O painel lateral de demonstração foi ocultado para priorizar o editor.
+- O ajuste fino aparece como painel flutuante sobre o preview.
+- A navegação de frames e play/pause adicionada na versão anterior foi preservada.
+
+### Observação
+
+A versão base aprovada antes deste experimento continua sendo a anterior, a menos que a Joyce aprove esta nova estrutura.
