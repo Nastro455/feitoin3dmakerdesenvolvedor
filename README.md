@@ -563,3 +563,15 @@ Se o vídeo exportado sair preto:
   - clique normal move 4px;
   - Shift + clique move 1px;
   - é possível pausar e retomar a reprodução do GIF.
+
+
+## Ajuste fino minimizado por padrão
+
+- O painel de ajuste fino agora abre minimizado.
+- Enquanto minimizado, aparece apenas o cabeçalho e o botão **Mostrar**.
+- As ferramentas internas só aparecem quando o usuário clicar em **Mostrar**.
+- As funções anteriores foram mantidas:
+  - navegação Preview / Frame 1 / Frame 2 / Frame 3;
+  - botão Reproduzir/Pausar;
+  - clique normal move 4px;
+  - Shift + clique move 1px.

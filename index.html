@@ -4102,6 +4102,52 @@
       }
     }
 
+  
+    /* Ajuste fino minimizado por padrão */
+    .fine-adjust-panel.minimized {
+      width: auto !important;
+      max-width: min(320px, calc(100vw - 24px)) !important;
+      padding: 12px 14px !important;
+      border-radius: 18px !important;
+    }
+
+    .fine-adjust-panel.minimized .fine-adjust-mini,
+    .fine-adjust-panel.minimized .preview-playback-inline,
+    .fine-adjust-panel.minimized .frame-jump-buttons,
+    .fine-adjust-panel.minimized .nudge-grid {
+      display: none !important;
+    }
+
+    .fine-adjust-panel.minimized .fine-adjust-head {
+      margin: 0 !important;
+    }
+
+    .fine-adjust-panel.minimized .fine-adjust-head strong {
+      white-space: nowrap !important;
+    }
+
+    .fine-adjust-panel.minimized .fine-adjust-head-actions {
+      display: inline-flex !important;
+    }
+
+    .fine-adjust-panel.minimized .fine-adjust-toggle {
+      display: inline-flex !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) .fine-adjust-mini,
+    .fine-adjust-panel:not(.minimized) .frame-jump-buttons,
+    .fine-adjust-panel:not(.minimized) .nudge-grid {
+      display: flex !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) .fine-adjust-mini {
+      display: block !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) .preview-playback-inline {
+      display: inline-flex !important;
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -4549,7 +4595,7 @@
           </div>
 
           <div class="fine-adjust-overlay" id="fineAdjustOverlay" hidden>
-            <div class="fine-adjust-panel">
+            <div class="fine-adjust-panel minimized">
               <div class="fine-adjust-head">
                 <strong>Ajuste fino por frame</strong>
                 <div class="fine-adjust-head-actions">
@@ -5145,7 +5191,8 @@
       clearKeypointsBtn.disabled = true;
 
       renderFramesList();
-      updateFineAdjustControls();
+      fineAdjustMinimized = true;
+    updateFineAdjustControls();
       startPreview();
 
       setStatus('Foto da Lente Retro carregada. Ajuste luz, cor, nitidez, LUT, glow e exporte em JPG alto.');
@@ -5237,14 +5284,14 @@
     function openFineAdjustPanel() {
       if (!rawFrameCanvases.length) return;
       fineAdjustVisible = true;
-      fineAdjustMinimized = false;
+      fineAdjustMinimized = true;
       updateFineAdjustControls();
       previewMode = 'frame';
       selectedAdjustFrame = 0;
       updateFineAdjustButtons();
       startPreview();
       updatePreviewPlaybackButtons();
-      setStatus('Ajuste fino aberto. Escolha um frame, corrija pequenos tremidos ou clique em Reproduzir GIF.');
+      setStatus('Ajuste fino aberto minimizado. Clique em “Mostrar” para exibir as ferramentas.');
     }
 
     function closeFineAdjustPanel() {
@@ -6943,6 +6990,7 @@
       fineAdjustPanel.classList.toggle('minimized', fineAdjustMinimized);
       fineAdjustToggleBtn.textContent = fineAdjustMinimized ? 'Mostrar' : 'Minimizar';
       fineAdjustToggleBtn.setAttribute('aria-expanded', fineAdjustMinimized ? 'false' : 'true');
+      updatePreviewPlaybackButtons();
     }
 
     function nudgeSelectedFrame(dx, dy) {
