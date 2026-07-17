@@ -3931,6 +3931,56 @@
       border-color: rgba(255,255,255,.32) !important;
     }
 
+  
+    /* Ajuste fino — navegação de frames e play/pause do preview */
+    .preview-playback-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 10px 0 10px;
+    }
+
+    .preview-playback-btn {
+      min-height: 38px;
+      padding: 9px 10px;
+      font-size: 12px;
+      border-radius: 13px;
+    }
+
+    .frame-jump-buttons {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 12px;
+    }
+
+    .frame-jump-buttons button {
+      min-height: 36px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .frame-jump-buttons button.active {
+      background: rgba(30,155,255,.92);
+      color: #fff;
+      border-color: rgba(142,203,255,.55);
+    }
+
+    .fine-adjust-panel.editor-mode {
+      max-width: min(460px, calc(100vw - 24px));
+    }
+
+    @media (max-width: 680px) {
+      .preview-playback-controls {
+        grid-template-columns: 1fr;
+      }
+
+      .frame-jump-buttons button {
+        flex: 1 1 84px;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -4384,7 +4434,11 @@
                 <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
               </div>
               <p class="fine-adjust-mini">Use as setas para corrigir o frame com resposta mais rápida. Clique normal move 4px; Shift + clique move 1px.</p>
-              <div class="frame-jump-buttons" id="frameJumpButtons" style="display:none;"></div>
+              <div class="preview-playback-controls">
+                <button class="secondary preview-playback-btn" id="previewPlaybackToggle" type="button">Pausar preview</button>
+                <button class="secondary preview-playback-btn" id="previewPlaybackResume" type="button">Reproduzir GIF</button>
+              </div>
+              <div class="frame-jump-buttons" id="frameJumpButtons"></div>
               <div class="nudge-grid">
                 <span class="placeholder" style="display:none;"></span>
                 <button class="secondary nudge-btn" type="button" data-nudge="up">↑</button>
@@ -4635,6 +4689,8 @@
     const openFineAdjustBtn = document.querySelector('#openFineAdjustBtn');
     const resetFramingBtn = document.querySelector('#resetFramingBtn');
     const fineAdjustCloseBtn = document.querySelector('#fineAdjustCloseBtn');
+    const previewPlaybackToggleBtn = document.querySelector('#previewPlaybackToggle');
+    const previewPlaybackResumeBtn = document.querySelector('#previewPlaybackResume');
     const stepImportGroup = document.querySelector('#stepImportGroup');
     const stepExportGroup = document.querySelector('#stepExportGroup');
     const stepCreativeGroup = document.querySelector('#stepCreativeGroup');
@@ -5026,15 +5082,51 @@
       exportResultMeta.textContent = `${format} • ${preset.aspectLabel} • ${preset.label}`;
     }
 
+
+    function updatePreviewPlaybackButtons() {
+      if (!previewPlaybackToggleBtn || !previewPlaybackResumeBtn) return;
+      const isAnimated = previewMode === 'animated' && Boolean(animationTimer);
+      previewPlaybackToggleBtn.textContent = isAnimated ? 'Pausar preview' : 'Preview pausado';
+      previewPlaybackResumeBtn.textContent = 'Reproduzir GIF';
+      previewPlaybackResumeBtn.disabled = !finalFrameCanvases.length;
+      previewPlaybackToggleBtn.disabled = !finalFrameCanvases.length;
+    }
+
+    function pausePreviewOnCurrentFrame() {
+      if (!finalFrameCanvases.length) return;
+      clearInterval(animationTimer);
+      animationTimer = null;
+      previewMode = 'frame';
+      selectedAdjustFrame = clamp(selectedAdjustFrame || 0, 0, finalFrameCanvases.length - 1);
+      const frame = finalFrameCanvases[selectedAdjustFrame] || finalFrameCanvases[0];
+      if (frame) drawPreviewFrame(frame);
+      updateFineAdjustButtons();
+      updatePreviewPlaybackButtons();
+      setStatus('Preview pausado. Escolha um frame para ajustar ou clique em Reproduzir GIF.');
+    }
+
+    function resumeAnimatedPreview() {
+      if (!finalFrameCanvases.length || selectingKeypoints) return;
+      previewMode = 'animated';
+      selectedAdjustFrame = 0;
+      updateFineAdjustButtons();
+      startPreview();
+      updatePreviewPlaybackButtons();
+      setStatus('Reprodução do GIF retomada no preview.');
+    }
+
+
     function openFineAdjustPanel() {
       if (!rawFrameCanvases.length) return;
       fineAdjustVisible = true;
       fineAdjustMinimized = false;
       updateFineAdjustControls();
       previewMode = 'frame';
+      selectedAdjustFrame = 0;
       updateFineAdjustButtons();
       startPreview();
-      setStatus('Ajuste fino aberto. Escolha um frame e corrija pequenos tremidos, se necessário.');
+      updatePreviewPlaybackButtons();
+      setStatus('Ajuste fino aberto. Escolha um frame, corrija pequenos tremidos ou clique em Reproduzir GIF.');
     }
 
     function closeFineAdjustPanel() {
@@ -5312,6 +5404,22 @@
       updateFineAdjustMinimizedState();
     });
 
+
+    if (previewPlaybackToggleBtn) {
+      previewPlaybackToggleBtn.addEventListener('click', () => {
+        if (previewMode === 'animated' && animationTimer) {
+          pausePreviewOnCurrentFrame();
+        } else {
+          resumeAnimatedPreview();
+        }
+      });
+    }
+
+    if (previewPlaybackResumeBtn) {
+      previewPlaybackResumeBtn.addEventListener('click', resumeAnimatedPreview);
+    }
+
+
     if (fineAdjustCloseBtn) {
       fineAdjustCloseBtn.addEventListener('click', closeFineAdjustPanel);
     }
@@ -5342,6 +5450,7 @@
       }
       updateFineAdjustButtons();
       startPreview();
+      updatePreviewPlaybackButtons();
     });
 
     nudgeButtons.forEach((button) => {
@@ -6730,6 +6839,7 @@
       rebuildFinalFrames();
       updateFineAdjustButtons();
       startPreview();
+      updatePreviewPlaybackButtons();
       setStatus(`Ajuste fino aplicado no Frame ${selectedAdjustFrame + 1}: X ${current.dx}px • Y ${current.dy}px.`);
     }
 
@@ -6739,6 +6849,7 @@
       renderFramesList();
       updateFineAdjustButtons();
       startPreview();
+      updatePreviewPlaybackButtons();
       setStatus(`Ajuste fino do Frame ${selectedAdjustFrame + 1} foi resetado.`);
     }
 
@@ -7390,6 +7501,7 @@
         const chosenFrame = finalFrameCanvases[selectedAdjustFrame] || finalFrameCanvases[0];
         drawPreviewFrame(chosenFrame);
         syncWorkflowExportButtonState(false);
+        updatePreviewPlaybackButtons();
         return;
       }
 
@@ -7410,6 +7522,7 @@
       draw();
       animationTimer = setInterval(draw, frameDelay);
       syncWorkflowExportButtonState(false);
+      updatePreviewPlaybackButtons();
     }
 
     function exportHighJpg() {

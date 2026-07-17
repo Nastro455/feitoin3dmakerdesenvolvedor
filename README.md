@@ -537,3 +537,13 @@ Se o vídeo exportado sair preto:
   - clique normal nas setas move 4px;
   - Shift + clique move 1px para ajuste super fino.
 - A atualização do ajuste fino ficou mais leve, evitando redesenhar miniaturas a cada clique.
+
+
+## Ajuste fino com navegação de frames e play/pause
+
+- Restaurada a navegação entre frames dentro do painel de ajuste fino.
+- Adicionado botão para pausar/reproduzir o preview do GIF.
+- Ao entrar no ajuste fino, o preview pausa para edição, mas o usuário pode retomar a reprodução.
+- O ajuste rápido por setas permanece:
+  - clique normal move 4px;
+  - Shift + clique move 1px.
