@@ -4148,6 +4148,126 @@
       display: inline-flex !important;
     }
 
+  
+    /* Correção final — ajuste fino limpo, com Minimizar e Reproduzir na navegação */
+    .fine-adjust-head {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+    }
+
+    .fine-adjust-head .fine-adjust-toggle {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-width: 86px !important;
+      width: auto !important;
+      min-height: 38px !important;
+      padding: 9px 14px !important;
+      border-radius: 999px !important;
+      font-size: 12px !important;
+      font-weight: 900 !important;
+      white-space: nowrap !important;
+      flex: 0 0 auto !important;
+    }
+
+    .preview-playback-inline,
+    .preview-playback-controls,
+    .preview-playback-btn {
+      display: none !important;
+    }
+
+    .fine-adjust-panel.minimized .fine-adjust-toggle {
+      display: inline-flex !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) {
+      width: min(420px, calc(100vw - 24px)) !important;
+      max-width: min(420px, calc(100vw - 24px)) !important;
+      padding: 14px !important;
+      border-radius: 22px !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) .fine-adjust-mini {
+      display: block !important;
+      margin: 10px 0 12px !important;
+      line-height: 1.38 !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) .frame-jump-buttons {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+      margin: 10px 0 14px !important;
+    }
+
+    .frame-jump-buttons button {
+      min-width: 74px !important;
+      width: auto !important;
+      min-height: 36px !important;
+      padding: 8px 12px !important;
+      border-radius: 999px !important;
+      font-size: 12px !important;
+      flex: 0 0 auto !important;
+      white-space: nowrap !important;
+    }
+
+    .frame-jump-buttons button.active {
+      background: var(--accent) !important;
+      color: #fff !important;
+      border-color: rgba(142,203,255,.55) !important;
+    }
+
+    .fine-adjust-panel:not(.minimized) .nudge-grid {
+      width: 154px !important;
+      margin: 10px auto 0 !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, 46px) !important;
+      gap: 8px !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .nudge-grid .placeholder {
+      display: block !important;
+      width: 46px !important;
+      height: 46px !important;
+      visibility: hidden !important;
+    }
+
+    .nudge-grid .nudge-btn {
+      box-sizing: border-box !important;
+      width: 46px !important;
+      min-width: 46px !important;
+      max-width: 46px !important;
+      height: 46px !important;
+      min-height: 46px !important;
+      max-height: 46px !important;
+      padding: 0 !important;
+      border-radius: 14px !important;
+      display: grid !important;
+      place-items: center !important;
+      font-size: 18px !important;
+      line-height: 1 !important;
+      flex: 0 0 46px !important;
+    }
+
+    .nudge-grid .nudge-btn.reset-offset {
+      font-size: 12px !important;
+      font-weight: 900 !important;
+    }
+
+    @media (max-width: 680px) {
+      .fine-adjust-panel:not(.minimized) {
+        width: calc(100vw - 24px) !important;
+      }
+
+      .frame-jump-buttons button {
+        min-width: 78px !important;
+      }
+    }
+
   </style>
 </head>
 <body class="lens-gate-active">
@@ -4598,10 +4718,7 @@
             <div class="fine-adjust-panel minimized">
               <div class="fine-adjust-head">
                 <strong>Ajuste fino por frame</strong>
-                <div class="fine-adjust-head-actions">
-                  <button class="secondary preview-playback-inline" id="previewPlaybackToggle" type="button">Reproduzir</button>
-                  <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
-                </div>
+                <button class="fine-adjust-toggle" id="fineAdjustToggleBtn" type="button">Mostrar</button>
               </div>
               <p class="fine-adjust-mini">Escolha um frame para ajuste rápido e use as setas para corrigir tremidos finos sobre o preview. Clique normal move 4px; Shift + clique move 1px.</p>
               <div class="frame-jump-buttons" id="frameJumpButtons"></div>
@@ -4855,7 +4972,6 @@
     const openFineAdjustBtn = document.querySelector('#openFineAdjustBtn');
     const resetFramingBtn = document.querySelector('#resetFramingBtn');
     const fineAdjustCloseBtn = document.querySelector('#fineAdjustCloseBtn');
-    const previewPlaybackToggleBtn = document.querySelector('#previewPlaybackToggle');
     const stepImportGroup = document.querySelector('#stepImportGroup');
     const stepExportGroup = document.querySelector('#stepExportGroup');
     const stepCreativeGroup = document.querySelector('#stepCreativeGroup');
@@ -5250,11 +5366,7 @@
 
 
     function updatePreviewPlaybackButtons() {
-      if (!previewPlaybackToggleBtn) return;
-      const hasFrames = finalFrameCanvases.length > 0;
-      const isAnimated = previewMode === 'animated' && Boolean(animationTimer);
-      previewPlaybackToggleBtn.textContent = isAnimated ? 'Pausar' : 'Reproduzir';
-      previewPlaybackToggleBtn.disabled = !hasFrames;
+      return;
     }
 
     function pausePreviewOnCurrentFrame() {
@@ -5568,17 +5680,6 @@
       fineAdjustMinimized = !fineAdjustMinimized;
       updateFineAdjustMinimizedState();
     });
-
-
-    if (previewPlaybackToggleBtn) {
-      previewPlaybackToggleBtn.addEventListener('click', () => {
-        if (previewMode === 'animated' && animationTimer) {
-          pausePreviewOnCurrentFrame();
-        } else {
-          resumeAnimatedPreview();
-        }
-      });
-    }
 
 
     if (fineAdjustCloseBtn) {
@@ -6974,7 +7075,7 @@
     }
 
     function renderFrameJumpButtons() {
-      const buttons = [`<button type="button" data-frame-mode="preview" class="${previewMode === 'animated' ? 'active' : ''}">Preview</button>`];
+      const buttons = [`<button type="button" data-frame-mode="preview" class="${previewMode === 'animated' ? 'active' : ''}">Reproduzir</button>`];
       rawFrameCanvases.forEach((_, index) => {
         const isActive = previewMode === 'frame' && selectedAdjustFrame === index;
         buttons.push(`<button type="button" data-frame-mode="frame" data-frame-index="${index}" class="${isActive ? 'active' : ''}">Frame ${index + 1}</button>`);
@@ -6990,7 +7091,6 @@
       fineAdjustPanel.classList.toggle('minimized', fineAdjustMinimized);
       fineAdjustToggleBtn.textContent = fineAdjustMinimized ? 'Mostrar' : 'Minimizar';
       fineAdjustToggleBtn.setAttribute('aria-expanded', fineAdjustMinimized ? 'false' : 'true');
-      updatePreviewPlaybackButtons();
     }
 
     function nudgeSelectedFrame(dx, dy) {

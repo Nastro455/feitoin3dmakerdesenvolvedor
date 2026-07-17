@@ -575,3 +575,12 @@ Se o vídeo exportado sair preto:
   - botão Reproduzir/Pausar;
   - clique normal move 4px;
   - Shift + clique move 1px.
+
+
+## Correção final do painel de ajuste fino limpo
+
+- Removido o botão extra **Reproduzir** do cabeçalho.
+- O botão **Minimizar** voltou a aparecer no cabeçalho do painel expandido.
+- O botão **Preview** da navegação agora se chama **Reproduzir**.
+- O visual das setas foi corrigido para voltar ao formato quadrado/limpo.
+- O painel continua minimizado por padrão e só mostra as ferramentas ao clicar em **Mostrar**.
