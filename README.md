@@ -380,3 +380,143 @@ Os painéis recolhíveis da lateral foram refinados para ficar visualmente mais 
   - RGB displacement
   - interpolação de quadros
   - marca d'água
+
+
+## Ícones SVG definitivos dos painéis
+
+- Os balões dos painéis agora usam SVG inline, evitando falhas de renderização de símbolos Unicode.
+- Ícones:
+  - Upload / importar
+  - Brilho / ajustes criativos
+  - Download / exportar
+
+
+## Ícones externos em assets/icons
+
+Os ícones dos painéis agora são arquivos SVG externos, referenciados diretamente no HTML.
+
+Pasta criada:
+
+```text
+assets/icons/
+├── icon-upload.svg
+├── icon-sparkle.svg
+└── icon-download.svg
+```
+
+Referências usadas no sistema:
+
+```html
+<img class="tool-group-icon" src="assets/icons/icon-upload.svg" alt="Importar">
+<img class="tool-group-icon" src="assets/icons/icon-sparkle.svg" alt="Ajustes">
+<img class="tool-group-icon" src="assets/icons/icon-download.svg" alt="Exportar">
+```
+
+Isso evita falhas de renderização de símbolos Unicode ou pseudo-elementos CSS.
+
+
+## Modo de segurança na exportação
+
+Foi adicionada uma camada de compatibilidade para casos em que o usuário exporta vídeo e o arquivo sai preto.
+
+### O que mudou
+
+- Novo switch no painel **Exportar arquivo**: **Modo de segurança na exportação**.
+- Aviso amigável quando o modo compatível estiver ativo.
+- Detecção preventiva de ambientes com maior risco, como Safari, iOS e mobile.
+- Validação básica dos frames antes da exportação.
+- Redesenho dos frames antes de exportar, se o sistema detectar risco de frame preto.
+- Redução automática de resolução para até 1280px de largura no modo compatível.
+- Uso de canvas sem alpha e fundo sólido para reduzir risco de frames pretos.
+- Fallback de codec para WebM quando o navegador não lidar bem com MP4/MOV.
+
+### Orientação para usuário
+
+Se o vídeo exportado sair preto:
+1. Ative o modo de segurança.
+2. Exporte novamente.
+3. Se ainda falhar, tente GIF ou JPG alto.
+4. Em Safari/iPhone, testar também no Chrome ou em desktop.
+
+
+## Correção do preview após modo de segurança
+
+- Corrigido problema em que a imagem carregada ficava preta no preview.
+- A validação do modo de segurança agora roda somente na exportação, não no preview.
+- O preview voltou a usar a renderização normal da ferramenta.
+- O modo compatível continua disponível apenas para evitar arquivo preto ao exportar vídeo.
+
+
+## Botão de exportação abaixo do fluxo
+
+- Adicionado um botão extra de exportação abaixo do card **Fluxo de produção**.
+- O botão chama a mesma função de exportação do painel principal.
+- O texto muda conforme o modo:
+  - Lente 3D: gerar GIF/MP4/MOV conforme formato escolhido.
+  - Lente Retro: exportar JPG alto.
+- Quando o arquivo fica pronto, o link de download também aparece abaixo do fluxo.
+
+
+## Correção do botão de exportar abaixo do fluxo
+
+- Corrigido o botão extra de exportação que ficava apagado/desativado.
+- Agora ele ativa quando existem frames prontos para exportar.
+- O botão não depende mais apenas do estado visual do botão principal.
+- O texto continua sincronizado com o formato escolhido.
+
+
+## Correção visual final dos selos de painel recolhível
+
+- Removido definitivamente o visual de ícone/bolinha dos painéis.
+- O antigo balão agora virou um selo textual horizontal: **Painel recolhível**.
+- O selo fica pulsando de forma discreta.
+- A indicação de rolagem foi mantida como texto auxiliar: **opções abaixo**.
+
+
+## Remoção definitiva dos balões/ícones antigos
+
+- Os antigos círculos/balões das categorias foram ocultados completamente.
+- O aviso **PAINEL RECOLHÍVEL** agora aparece como selo textual no topo do card, fora da área do antigo ícone.
+- A indicação **opções abaixo** continua aparecendo como apoio visual para rolagem.
+
+
+## Vinheta, grão e Dust and Scratches na Lente 3D
+
+- Adicionados controles criativos na guia **Ajustes e Exportar** da Lente 3D:
+  - Vinheta / escurecer bordas
+  - Granulado extra
+  - Dust and Scratches / poeira de filme
+- Os efeitos aparecem no preview e entram no arquivo exportado.
+- Os controles também são zerados ao alternar entre Lente 3D e Lente Retro.
+
+
+## Correção de visibilidade dos efeitos criativos na Lente 3D
+
+- Corrigido o painel **Ajustes e Exportar** para exibir os novos controles na Lente 3D:
+  - Grão criativo
+  - Vinheta criativa
+  - Dust and Scratches
+- Os controles agora aparecem junto dos demais ajustes criativos, antes de RGB/interpolação/exportação.
+
+
+## Correção dos efeitos criativos da Lente 3D
+
+- Removidos da Lente 3D os controles que pertencem à Lente Retro:
+  - Temperatura / tom quente-frio
+  - Pretos desbotados / matte
+- Mantidos na Lente 3D:
+  - Grão criativo
+  - Vinheta criativa
+  - Dust and Scratches
+- Corrigido o preview ao vivo: grão, vinheta e Dust and Scratches atualizam imediatamente ao mexer na barra.
+
+
+## Interpolação inteligente controlada pela barra
+
+- A interpolação foi melhorada sem adicionar novos controles.
+- Continua sendo controlada pela barra existente de interpolação.
+- Não foi aplicado crop automático.
+- Não foi aplicada equalização automática.
+- Não foi aplicada microvariação analógica.
+- O sistema agora usa uma curva mais suave entre os frames e evita interpolar a volta brusca quando o loop não está em ida-e-volta.
+- A quantidade de frames intermediários é definida automaticamente pela porcentagem da barra.

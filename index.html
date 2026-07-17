@@ -3250,9 +3250,644 @@
       white-space: normal;
     }
 
-    #stepImportGroup .tool-group-badge::before { content: "↥"; }
-    #stepCreativeGroup .tool-group-badge::before { content: "✦"; }
-    #stepExportGroup .tool-group-badge::before { content: "↧"; }
+    
+    
+    
+
+  
+    /* Correção definitiva — ícones SVG nos balões dos painéis */
+    .tool-group-title .tool-group-badge {
+      width: 40px !important;
+      min-width: 40px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      flex: 0 0 40px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      text-indent: 0 !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: #f4fbff !important;
+    }
+
+    .tool-group-title .tool-group-badge::before,
+    .tool-group-title .tool-group-badge::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .tool-group-title .tool-group-badge svg {
+      display: block !important;
+      width: 22px !important;
+      height: 22px !important;
+      fill: currentColor !important;
+      color: #f4fbff !important;
+      opacity: .98 !important;
+      transform: none !important;
+    }
+
+    #stepCreativeGroup .tool-group-badge svg {
+      width: 21px !important;
+      height: 21px !important;
+    }
+
+  
+    /* Ícones externos dos painéis — arquivos em assets/icons */
+    .tool-group-title .tool-group-badge {
+      width: 40px !important;
+      min-width: 40px !important;
+      height: 40px !important;
+      padding: 0 !important;
+      flex: 0 0 40px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      text-indent: 0 !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      color: transparent !important;
+      background: linear-gradient(180deg, rgba(77,160,255,.92), rgba(44,117,225,.92)) !important;
+      border: 1px solid rgba(255,255,255,.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px rgba(0,0,0,.18) !important;
+    }
+
+    .tool-group-title .tool-group-badge::before,
+    .tool-group-title .tool-group-badge::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .tool-group-icon {
+      display: block !important;
+      width: 22px !important;
+      height: 22px !important;
+      object-fit: contain !important;
+      opacity: .98 !important;
+      pointer-events: none !important;
+      text-indent: 0 !important;
+      font-size: initial !important;
+      line-height: initial !important;
+    }
+
+    #stepCreativeGroup .tool-group-icon {
+      width: 21px !important;
+      height: 21px !important;
+    }
+
+  
+    /* Modo de segurança de exportação */
+    .safe-export-warning {
+      margin-top: 12px;
+      border: 1px solid rgba(255,209,102,.28);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255,209,102,.08);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .safe-export-warning strong {
+      display: block;
+      color: var(--warning);
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .safe-export-warning p {
+      margin: 0;
+    }
+
+    .safe-export-field .switch-label-text {
+      line-height: 1.35;
+    }
+
+  
+    /* Botão extra de exportação abaixo do fluxo de produção */
+    .workflow-export-cta {
+      margin-top: 14px;
+      border: 1px solid rgba(30,155,255,.28);
+      border-radius: 22px;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(30,155,255,.11), rgba(255,255,255,.035));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 14px 36px rgba(0,0,0,.16);
+    }
+
+    .workflow-export-cta strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .workflow-export-cta p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.42;
+    }
+
+    .workflow-export-cta button {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .workflow-download-link {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .workflow-download-link:hover {
+      text-decoration: underline;
+    }
+
+    body.lens-retro .workflow-export-cta p::after {
+      content: " No modo Retro, este botão exporta JPG alto.";
+    }
+
+
+    /* ===== Atualização UX — unificação de painéis e mobile simplificado ===== */
+    .tool-group-badge {
+      min-width: 124px !important;
+      width: 124px !important;
+      height: 34px !important;
+      border-radius: 999px !important;
+      padding: 0 12px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: linear-gradient(135deg, rgba(69,145,255,.96), rgba(95,188,255,.9)) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 10px 22px rgba(0,0,0,.18);
+      color: #fff !important;
+      border: 1px solid rgba(255,255,255,.16) !important;
+      overflow: hidden;
+    }
+
+    .tool-group-badge .badge-pulse-text {
+      font-size: 10px;
+      line-height: 1.05;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      text-align: center;
+      animation: badgePulse 1.45s ease-in-out infinite;
+      white-space: normal;
+    }
+
+    .tool-group-badge img,
+    .tool-group-badge svg {
+      display: none !important;
+    }
+
+    @keyframes badgePulse {
+      0%,100% { opacity: .68; transform: scale(.985); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    .tool-group-title {
+      grid-template-columns: 124px minmax(0,1fr) !important;
+      align-items: start !important;
+    }
+
+    .tool-group summary {
+      align-items: start !important;
+    }
+
+    .tool-group summary::after {
+      content: '↓ role o mouse';
+      position: absolute;
+      right: 42px;
+      bottom: 10px;
+      font-size: 10px;
+      font-weight: 800;
+      color: rgba(201,220,255,.7);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .tool-group { position: relative; }
+
+    .tool-group-content {
+      max-height: min(58vh, 640px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.18) transparent;
+    }
+
+    .tool-group-content::-webkit-scrollbar { width: 8px; }
+    .tool-group-content::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.16);
+      border-radius: 999px;
+    }
+
+    .merged-export-section {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: grid;
+      gap: 0;
+    }
+
+    .panel-subsection-title {
+      display: grid;
+      gap: 4px;
+      margin-bottom: 8px;
+      padding: 0 0 4px;
+    }
+
+    .panel-subsection-title span {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .panel-subsection-title small {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .retro-mode-note { display: none !important; }
+
+    body.lens-retro .preview-point-actions-card { display: none !important; }
+    body.lens-retro .frames-card { display: none !important; }
+    body.lens-retro .fine-adjust-overlay { display: none !important; }
+
+    .mobile-hide-3d { }
+
+    @media (max-width: 680px) {
+      .tool-group-badge {
+        display: none !important;
+      }
+
+      .tool-group-title {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      .tool-group summary::after {
+        content: '';
+      }
+
+      body.lens-3d .frames-card,
+      body.lens-3d .demo-side-column,
+      body.lens-3d .site-footer .download-note {
+        display: none !important;
+      }
+
+      body.lens-3d .preview-main-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      body.lens-3d #previewBox { order: 1; }
+      body.lens-3d .preview-point-actions-card { order: 2; }
+      body.lens-3d .frames-card { order: 3; }
+      body.lens-3d .grid > aside.card { order: 4; }
+
+      body.lens-3d .mobile-hide-3d,
+      body.lens-3d .retro-look-note,
+      body.lens-3d .mini-note-mobile-hide {
+        display: none !important;
+      }
+
+      body.lens-3d #stepCreativeGroup .tool-group-content {
+        max-height: none;
+      }
+
+      body.lens-3d .merged-export-section {
+        margin-top: 8px;
+        padding-top: 10px;
+        border-top-color: rgba(255,255,255,.06);
+      }
+
+      body.lens-3d .export-action-panel {
+        margin-top: 8px;
+        padding-top: 8px;
+      }
+
+      body.lens-retro .grid > aside.card { order: 3; }
+      body.lens-retro .preview-wrap { order: 1; }
+
+      body.lens-retro #previewBox { order: 1; }
+      body.lens-retro .grid { gap: 10px; }
+    }
+
+  
+    /* Correção final — remove visual de ícone/bolinha e transforma em selo de painel recolhível */
+    .tool-group-title {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 8px !important;
+      align-items: start !important;
+    }
+
+    .tool-group-badge {
+      position: static !important;
+      width: fit-content !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 5px 9px !important;
+      border-radius: 999px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(30,155,255,.16) !important;
+      border: 1px solid rgba(142,203,255,.28) !important;
+      box-shadow: none !important;
+      color: #8ECBFF !important;
+      text-indent: 0 !important;
+      overflow: visible !important;
+      line-height: 1 !important;
+      margin: 0 0 7px 0 !important;
+      flex: 0 0 auto !important;
+    }
+
+    .tool-group-badge::before,
+    .tool-group-badge::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    .tool-group-badge img,
+    .tool-group-badge svg {
+      display: none !important;
+    }
+
+    .badge-pulse-text {
+      display: inline-block !important;
+      font-size: 9px !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+      text-transform: uppercase !important;
+      letter-spacing: .06em !important;
+      color: #8ECBFF !important;
+      opacity: 1 !important;
+      white-space: nowrap !important;
+      animation: badgePulseText 1.35s ease-in-out infinite !important;
+    }
+
+    @keyframes badgePulseText {
+      0%, 100% { opacity: .62; }
+      50% { opacity: 1; }
+    }
+
+    .tool-group-title > div {
+      min-width: 0 !important;
+    }
+
+    .tool-group summary {
+      grid-template-columns: 1fr 22px !important;
+      align-items: start !important;
+    }
+
+    .tool-group summary::after {
+      content: "↓ opções abaixo" !important;
+      right: 38px !important;
+      bottom: 9px !important;
+      font-size: 9px !important;
+      opacity: .78 !important;
+    }
+
+    @media (max-width: 680px) {
+      .tool-group-badge {
+        display: inline-flex !important;
+        padding: 5px 8px !important;
+        margin-bottom: 6px !important;
+      }
+
+      .badge-pulse-text {
+        font-size: 8.5px !important;
+      }
+
+      .tool-group summary::after {
+        content: "↓ opções" !important;
+        right: 36px !important;
+      }
+    }
+
+  
+    /* Correção definitiva — remove totalmente o balão/ícone antigo das categorias */
+    .tool-group summary .tool-group-title .tool-group-badge,
+    .tool-group-title .tool-group-badge,
+    span.tool-group-badge {
+      display: none !important;
+      width: 0 !important;
+      min-width: 0 !important;
+      max-width: 0 !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      overflow: hidden !important;
+      flex: 0 0 0 !important;
+    }
+
+    .tool-group summary .tool-group-title,
+    .tool-group-title {
+      display: block !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    .tool-group summary .tool-group-title > div,
+    .tool-group-title > div {
+      display: block !important;
+      min-width: 0 !important;
+      padding-left: 0 !important;
+    }
+
+    .tool-group summary {
+      position: relative !important;
+      padding-top: 34px !important;
+    }
+
+    .tool-group summary::before {
+      content: "PAINEL RECOLHÍVEL";
+      position: absolute;
+      left: 14px;
+      top: 11px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(142,203,255,.28);
+      background: rgba(30,155,255,.13);
+      color: #8ECBFF;
+      font-size: 9px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      animation: painelRecolhivelPulse 1.35s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes painelRecolhivelPulse {
+      0%, 100% { opacity: .55; }
+      50% { opacity: 1; }
+    }
+
+    .tool-group summary::after {
+      content: "↓ opções abaixo" !important;
+      right: 38px !important;
+      bottom: 10px !important;
+      font-size: 9px !important;
+      font-weight: 900 !important;
+      color: rgba(201,220,255,.72) !important;
+      opacity: .85 !important;
+      text-transform: uppercase !important;
+      letter-spacing: .04em !important;
+    }
+
+    @media (max-width: 680px) {
+      .tool-group summary {
+        padding-top: 34px !important;
+      }
+
+      .tool-group summary::before {
+        left: 12px;
+        top: 10px;
+        font-size: 8.5px;
+      }
+
+      .tool-group summary::after {
+        content: "↓ opções" !important;
+        right: 34px !important;
+        bottom: 9px !important;
+      }
+    }
+
+  
+    /* Lente 3D — novos efeitos criativos */
+    body.lens-3d .retro-presets-field {
+      display: none !important;
+    }
+
+    body.lens-3d .retro-secondary-control,
+    body.lens-3d .film-dust-control {
+      display: block;
+    }
+
+    body.lens-3d .retro-secondary-control label::after {
+      content: " — efeito criativo";
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    @media (max-width: 680px) {
+      body.lens-3d .retro-secondary-control,
+      body.lens-3d .film-dust-control {
+        display: block !important;
+      }
+
+      body.lens-3d .film-dust-control .mini-note {
+        display: none !important;
+      }
+    }
+
+  
+    /* Correção — exibir grão, vinheta e Dust and Scratches na Lente 3D */
+    body.lens-3d .show-in-3d-effects,
+    body.lens-3d .retro-secondary-control,
+    body.lens-3d .film-dust-control {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    body.lens-3d .retro-presets-field {
+      display: none !important;
+    }
+
+    body.lens-3d .retro-secondary-control label::after {
+      content: "";
+    }
+
+    body.lens-3d .retro-secondary-control label[for="retroGrainAdjust"]::before {
+      content: "Grão criativo — ";
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    body.lens-3d .retro-secondary-control label[for="retroVignetteAdjust"]::before {
+      content: "Vinheta criativa — ";
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    body.lens-3d .film-dust-control label::before {
+      content: "Textura de filme — ";
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    @media (max-width: 680px) {
+      body.lens-3d .show-in-3d-effects,
+      body.lens-3d .retro-secondary-control,
+      body.lens-3d .film-dust-control {
+        display: block !important;
+      }
+    }
+
+  
+    /* Correção — Lente 3D sem temperatura/matte e efeitos com preview ao vivo */
+    body.lens-3d #retroWarmthAdjust,
+    body.lens-3d #retroFadeAdjust {
+      display: none !important;
+    }
+
+    body.lens-3d #retroWarmthAdjust,
+    body.lens-3d #retroFadeAdjust,
+    body.lens-3d label[for="retroWarmthAdjust"],
+    body.lens-3d label[for="retroFadeAdjust"] {
+      display: none !important;
+    }
+
+    body.lens-3d #retroWarmthAdjustValue,
+    body.lens-3d #retroFadeAdjustValue {
+      display: none !important;
+    }
+
+    body.lens-3d #retroWarmthAdjust,
+    body.lens-3d #retroFadeAdjust {
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+
+    body.lens-3d .retro-secondary-control:has(#retroWarmthAdjust),
+    body.lens-3d .retro-secondary-control:has(#retroFadeAdjust) {
+      display: none !important;
+    }
+
+    body.lens-3d .retro-secondary-control:has(#retroGrainAdjust),
+    body.lens-3d .retro-secondary-control:has(#retroVignetteAdjust),
+    body.lens-3d .film-dust-control {
+      display: block !important;
+    }
 
   </style>
 </head>
@@ -3310,7 +3945,7 @@
 <details class="tool-group" id="stepImportGroup" open>
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge"></span>
+                <span class="tool-group-badge"></span></span>
                 <div>
                   <strong>Importar e alinhar imagem</strong>
                   <span>Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.</span>
@@ -3395,7 +4030,7 @@
           <details class="tool-group" id="stepCreativeGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge"></span>
+                <span class="tool-group-badge"></span></span>
                 <div>
                   <strong>Estilo e acabamento</strong>
                   <span>Aplique filtros, LUT, exposição, nitidez, glow, RGB 3D e marca d'água.</span>
@@ -3515,6 +4150,17 @@
               </div>
 
 
+              <div class="field film-dust-control">
+                <label for="filmDustScratchesAdjust">Dust and Scratches / poeira de filme</label>
+                <div class="range-row">
+                  <input id="filmDustScratchesAdjust" type="range" min="0" max="100" value="0" step="5" />
+                  <output id="filmDustScratchesValue">0%</output>
+                </div>
+                <p class="mini-note">Adiciona pequenas partículas e riscos de película. Use pouco para um efeito mais natural.</p>
+              </div>
+
+
+
               <div class="field">
                 <label for="rgbDisplacement">Deslocamento RGB 3D</label>
                 <div class="range-row">
@@ -3524,12 +4170,12 @@
               </div>
 
               <div class="field">
-                <label for="frameInterpolationAmount">Interpolação de tempo / quadros</label>
+                <label for="frameInterpolationAmount">Interpolação inteligente entre frames</label>
                 <div class="range-row">
                   <input id="frameInterpolationAmount" type="range" min="0" max="100" value="0" step="5" />
                   <output id="frameInterpolationAmountValue">0%</output>
                 </div>
-                <p class="mini-note">Cria quadros intermediários entre as imagens para deixar o GIF ou vídeo mais fluido. Em 0%, a animação mantém o comportamento original.</p>
+                <p class="mini-note">Cria quadros intermediários mais suaves usando a mesma barra. Em 0%, mantém os frames originais; quanto maior, mais fluida fica a transição.</p>
               </div>
 
               <div class="field">
@@ -3553,7 +4199,7 @@
 <details class="tool-group" id="stepExportGroup">
             <summary>
               <div class="tool-group-title">
-                <span class="tool-group-badge"></span>
+                <span class="tool-group-badge"></span></span>
                 <div>
                   <strong>Exportar arquivo</strong>
                   <span>Defina resolução, formato, duração e qualidade do arquivo final.</span>
@@ -3565,13 +4211,13 @@
               <div class="field">
                 <label for="totalDuration">6. Definir duração final do GIF</label>
                 <select id="totalDuration">
-                  <option value="auto" selected>Automático pela velocidade</option>
+                  <option value="auto">Automático pela velocidade</option>
                   <option value="1000">1 segundo</option>
                   <option value="1500">1,5 segundo</option>
                   <option value="2000">2 segundos</option>
                   <option value="3000">3 segundos</option>
                   <option value="5000">5 segundos</option>
-                  <option value="10000">10 segundos</option>
+                  <option value="10000" selected>10 segundos</option>
                   <option value="custom">Personalizado em segundos</option>
                 </select>
               </div>
@@ -3626,7 +4272,25 @@
                   <p>Quando estiver satisfeito com o preview, exporte no formato desejado e baixe o arquivo final.</p>
                 </div>
                 <div class="actions visualizer-actions">
-                  <button id="generateBtn" disabled>Exportar arquivo</button>
+                  
+              <div class="field safe-export-field">
+                <label>Modo de segurança na exportação</label>
+                <div class="switch-row">
+                  <label class="switch-control" for="safeExportMode">
+                    <input id="safeExportMode" type="checkbox" />
+                    <span class="switch-slider"></span>
+                  </label>
+                  <span class="switch-label-text">Ativar exportação compatível para evitar arquivo preto em alguns navegadores</span>
+                </div>
+                <p class="mini-note">Use quando o vídeo exportado sair preto, falhar no celular ou apresentar erro no navegador. O sistema também tenta ativar automaticamente se detectar risco.</p>
+              </div>
+
+              <div class="safe-export-warning" id="safeExportWarning" style="display: none;">
+                <strong>Modo compatível ativado</strong>
+                <p>Seu navegador pode ter dificuldade com MP4/MOV. Para evitar arquivo preto, vamos usar uma renderização mais segura. Se ainda falhar, exporte em GIF ou JPG alto.</p>
+              </div>
+
+              <button id="generateBtn" disabled>Exportar arquivo</button>
                   <button class="secondary" id="exportJpgBtn" type="button" disabled>Exportar JPG alto</button>
                   <button class="secondary" id="clearKeypointsBtn" type="button" disabled>Limpar alinhamento</button>
                   <button class="secondary" id="resetBtn" type="button">Limpar tudo</button>
@@ -3705,7 +4369,7 @@
           </div>
         </div>
 
-        <div class="card">
+        <div class="card frames-card" id="framesCard">
           <label>Frames originais com pontos registrados</label>
           <div class="frames" id="framesList"></div>
         </div>
@@ -3721,6 +4385,14 @@
               <div class="workflow-item" id="workflowExport"><span>4</span><div><strong>Pronto para exportar</strong><small>Defina resolução, formato e gere o arquivo final.</small></div></div>
             </div>
           </div>
+
+          <div class="workflow-export-cta" id="workflowExportCta">
+            <strong>Pronto para finalizar?</strong>
+            <p>Depois de importar, alinhar e ajustar o estilo, exporte o arquivo final aqui também.</p>
+            <button id="workflowGenerateBtn" type="button" disabled>Exportar arquivo</button>
+            <a id="workflowDownloadLink" class="workflow-download-link" style="display: none;">Baixar arquivo pronto</a>
+          </div>
+
           <div class="card demo-side-panel">
             <div class="demo-video-frame">
               <video id="demoSideVideo" src="assets/feitoin3d-kenji-lente-3d.mp4" autoplay muted loop playsinline preload="metadata"></video>
@@ -3848,6 +4520,8 @@
     const totalDurationSelect = document.querySelector('#totalDuration');
     const customDurationField = document.querySelector('#customDurationField');
     const customDurationSeconds = document.querySelector('#customDurationSeconds');
+    const safeExportModeInput = document.querySelector('#safeExportMode');
+    const safeExportWarning = document.querySelector('#safeExportWarning');
     const exportFormatSelect = document.querySelector('#exportFormat');
     const exportAspectSelect = document.querySelector('#exportAspect');
     const exportQualitySelect = document.querySelector('#exportQuality');
@@ -3873,6 +4547,8 @@
     const retroGrainAdjustValue = document.querySelector('#retroGrainAdjustValue');
     const retroVignetteAdjustInput = document.querySelector('#retroVignetteAdjust');
     const retroVignetteAdjustValue = document.querySelector('#retroVignetteAdjustValue');
+    const filmDustScratchesInput = document.querySelector('#filmDustScratchesAdjust');
+    const filmDustScratchesValue = document.querySelector('#filmDustScratchesValue');
     const retroPresetButtons = Array.from(document.querySelectorAll('[data-retro-preset]'));
     const rgbDisplacementInput = document.querySelector('#rgbDisplacement');
     const rgbDisplacementValue = document.querySelector('#rgbDisplacementValue');
@@ -3882,6 +4558,8 @@
     const watermarkTextField = document.querySelector('#watermarkTextField');
     const watermarkTextInput = document.querySelector('#watermarkText');
     const generateBtn = document.querySelector('#generateBtn');
+    const workflowGenerateBtn = document.querySelector('#workflowGenerateBtn');
+    const workflowDownloadLink = document.querySelector('#workflowDownloadLink');
     const exportJpgBtn = document.querySelector('#exportJpgBtn');
     const keypointBtn = document.querySelector('#keypointBtn');
     const applyKeypointsBtn = document.querySelector('#applyKeypointsBtn');
@@ -3993,6 +4671,8 @@
       if (retroFadeAdjustInput) retroFadeAdjustInput.value = '0';
       if (retroGrainAdjustInput) retroGrainAdjustInput.value = '0';
       if (retroVignetteAdjustInput) retroVignetteAdjustInput.value = '0';
+      if (filmDustScratchesInput) filmDustScratchesInput.value = '0';
+      if (filmDustScratchesValue) filmDustScratchesValue.textContent = '0%';
       updateRetroControlLabels();
 
       if (rgbDisplacementInput) rgbDisplacementInput.value = '0';
@@ -4114,6 +4794,7 @@
 
     function updateLensModeInterface() {
       const isRetro = currentLensMode === 'retro';
+      update3dEffectFieldVisibility();
       document.body.classList.toggle('lens-retro', isRetro);
       document.body.classList.toggle('lens-3d', currentLensMode === '3d');
       document.body.classList.toggle('lens-gate-active', !currentLensMode);
@@ -4138,24 +4819,25 @@
 
       if (isRetro) {
         if (importTitle) importTitle.textContent = 'Upload e ajustes da Lente Retro';
-        if (importDescription) importDescription.textContent = 'Carregue a foto e escolha o formato final.';
-        if (creativeTitle) creativeTitle.textContent = 'Ajustes de imagem e recursos criativos';
-        if (creativeDescription) creativeDescription.textContent = 'Receitas, luz, cor, grão, matte e glow.';
+        if (importDescription) importDescription.textContent = 'Carregue a foto, escolha o formato final e prepare o enquadramento.';
+        if (creativeTitle) creativeTitle.textContent = 'Ajustes criativos e Exportar';
+        if (creativeDescription) creativeDescription.textContent = 'Receitas prontas, tratamento analógico e exportação da foto final.';
         if (exportTitle) exportTitle.textContent = 'Exportar foto final';
         if (exportDescription) exportDescription.textContent = 'Exporte a foto final em JPG alto.';
-        if (dropzoneStrong) dropzoneStrong.textContent = '1. Carregar foto da Lente';
+        if (dropzoneStrong) dropzoneStrong.textContent = '1. Carregar foto da Lente Retro';
         if (dropzoneSpan) dropzoneSpan.textContent = 'JPG, PNG, WEBP, HEIC/HEIF, TIFF e arquivos de câmera quando suportados pelo navegador';
         if (emptyText) emptyText.textContent = 'Carregue uma foto da Lente Retro para começar o tratamento.';
         exportFormatSelect.value = 'mp4';
         exportJpgBtn.style.display = 'none';
         generateBtn.textContent = 'Exportar JPG alto';
+        syncWorkflowExportButtonState();
         setRetroPresetButtonState(activeRetroPreset);
         updateRetroControlLabels();
       } else {
         if (importTitle) importTitle.textContent = 'Importar e alinhar imagem';
         if (importDescription) importDescription.textContent = 'Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.';
-        if (creativeTitle) creativeTitle.textContent = 'Estilo e acabamento';
-        if (creativeDescription) creativeDescription.textContent = "Aplique filtros, LUT, exposição, nitidez, glow, RGB 3D e marca d'água.";
+        if (creativeTitle) creativeTitle.textContent = 'Ajustes e Exportar';
+        if (creativeDescription) creativeDescription.textContent = "Ajuste filtros, vinheta, grão, Dust and Scratches, velocidade e exporte no mesmo painel.";
         if (exportTitle) exportTitle.textContent = 'Exportar arquivo';
         if (exportDescription) exportDescription.textContent = 'Defina resolução, formato, duração e qualidade do arquivo final.';
         if (dropzoneStrong) dropzoneStrong.textContent = '1. Carregar foto 3D';
@@ -4180,9 +4862,12 @@
       if (clearKeypointsBtn) clearKeypointsBtn.style.display = isRetro ? 'none' : '';
       if (fineAdjustOverlay) fineAdjustOverlay.style.display = isRetro ? 'none' : '';
 
+      applyUnifiedPanelLayout();
+      refreshUnifiedPanelTexts();
       setupExclusiveToolPanels();
-    updateExportControls();
+      updateExportControls();
       updateWorkflowStatus();
+      applyMobileMinimalExperience();
     }
 
     function selectLensMode(mode) {
@@ -4192,7 +4877,7 @@
       currentLensMode = mode;
       updateLensModeInterface();
       [stepImportGroup, stepCreativeGroup, stepExportGroup].forEach((group) => {
-        if (!group) return;
+        if (!group || group.hidden) return;
         group.open = group === stepImportGroup;
       });
 
@@ -4263,6 +4948,9 @@
         Number(exposureAdjustInput.value) !== 0 ||
         Number(sharpnessAdjustInput.value) > 0 ||
         Number(glowAdjustInput.value) > 0 ||
+        Number(retroGrainAdjustInput.value) > 0 ||
+        Number(retroVignetteAdjustInput.value) > 0 ||
+        Number(filmDustScratchesInput?.value || 0) > 0 ||
         Number(rgbDisplacementInput.value) > 0 ||
         (currentLensMode !== 'retro' && Number(frameInterpolationAmountInput.value) > 0) ||
         watermarkEnabledInput.checked
@@ -4361,6 +5049,18 @@
       if (totalDurationSelect.value !== 'custom') return;
       if (!selectingKeypoints) startPreview();
     });
+
+
+    if (safeExportModeInput) {
+      safeExportModeInput.addEventListener('change', () => {
+        showSafeExportWarning(safeExportModeInput.checked);
+        setStatus(safeExportModeInput.checked
+          ? 'Modo de segurança ativado. A exportação usará renderização mais compatível.'
+          : 'Modo de segurança desativado.'
+        );
+      });
+    }
+
 
     exportFormatSelect.addEventListener('change', () => {
       updateExportControls();
@@ -4501,6 +5201,9 @@
       }
     });
 
+
+
+
     rgbDisplacementInput.addEventListener('input', () => {
       rgbDisplacementValue.textContent = `${rgbDisplacementInput.value}px`;
       if (currentLensMode === 'retro') setRetroPresetButtonState(null);
@@ -4520,9 +5223,9 @@
       if (!rawFrameCanvases.length || selectingKeypoints) return;
       startPreview();
       if (Number(frameInterpolationAmountInput.value) > 0) {
-        setStatus(`Interpolação de tempo ajustada para ${frameInterpolationAmountInput.value}%.`);
+        setStatus(`Interpolação inteligente ajustada para ${frameInterpolationAmountInput.value}%.`);
       } else {
-        setStatus('Interpolação de tempo desativada.');
+        setStatus('Interpolação inteligente desativada.');
       }
     });
 
@@ -4630,7 +5333,7 @@
 
 
     function setupExclusiveToolPanels() {
-      const toolPanels = Array.from(document.querySelectorAll('.tool-group'));
+      const toolPanels = Array.from(document.querySelectorAll('.tool-group')).filter((panel) => panel.offsetParent !== null && !panel.hidden);
 
       toolPanels.forEach((panel) => {
         panel.addEventListener('toggle', () => {
@@ -4675,6 +5378,43 @@
 
 
 
+
+    function handleCreativeTextureLiveUpdate(control, label) {
+      if (!control) return;
+
+      if (control === retroGrainAdjustInput && retroGrainAdjustValue) {
+        retroGrainAdjustValue.textContent = `${Number(control.value || 0)}%`;
+      }
+
+      if (control === retroVignetteAdjustInput && retroVignetteAdjustValue) {
+        retroVignetteAdjustValue.textContent = `${Number(control.value || 0)}%`;
+      }
+
+      if (control === filmDustScratchesInput && filmDustScratchesValue) {
+        filmDustScratchesValue.textContent = `${Number(control.value || 0)}%`;
+      }
+
+      if (currentLensMode === 'retro') {
+        setRetroPresetButtonState(null);
+      }
+
+      if (!rawFrameCanvases.length || selectingKeypoints) return;
+
+      clearInterval(animationTimer);
+      rebuildFinalFrames();
+
+      if (currentLensMode === 'retro') {
+        previewMode = 'frame';
+        selectedAdjustFrame = 0;
+      }
+
+      startPreview();
+      setStatus(`${label} ajustado para ${Number(control.value || 0)}%.`);
+      updateWorkflowStatus();
+      updateExportResultMeta();
+    }
+
+
     function handleRetroControlManualChange(target) {
       if (!target || currentLensMode !== 'retro') return;
 
@@ -4691,7 +5431,18 @@
       forceRetroLiveUpdate(messages[target.id] || 'Ajuste Retro atualizado no preview.');
     }
 
-    [retroWarmthAdjustInput, retroFadeAdjustInput, retroGrainAdjustInput, retroVignetteAdjustInput].forEach((control) => {
+
+    [retroGrainAdjustInput, retroVignetteAdjustInput, filmDustScratchesInput].forEach((control) => {
+      if (!control) return;
+      const label = control === retroGrainAdjustInput
+        ? 'Grão criativo'
+        : (control === retroVignetteAdjustInput ? 'Vinheta criativa' : 'Dust and Scratches');
+      control.addEventListener('input', () => handleCreativeTextureLiveUpdate(control, label));
+      control.addEventListener('change', () => handleCreativeTextureLiveUpdate(control, label));
+    });
+
+
+    [retroWarmthAdjustInput, retroFadeAdjustInput].forEach((control) => {
       if (!control) return;
       control.addEventListener('input', () => handleRetroControlManualChange(control));
       control.addEventListener('change', () => handleRetroControlManualChange(control));
@@ -4707,6 +5458,17 @@
     applyKeypointsBtn.addEventListener('click', finishKeypointSelection);
     clearKeypointsBtn.addEventListener('click', () => clearKeypoints(true));
     generateBtn.addEventListener('click', generateExport);
+
+    if (workflowGenerateBtn) {
+      workflowGenerateBtn.addEventListener('click', () => {
+        if (!finalFrameCanvases.length) {
+          setStatus('Carregue e prepare a imagem antes de exportar.');
+          return;
+        }
+        generateExport();
+      });
+    }
+
     exportJpgBtn.addEventListener('click', exportHighJpg);
     resetBtn.addEventListener('click', resetAll);
     canvas.addEventListener('click', handleCanvasClick);
@@ -4889,6 +5651,7 @@
         applyGlowEffect(output);
         applyRetroExtraGrain(output);
         applyRetroVignette(output);
+        applyFilmDustAndScratches(output);
         applyRgbDisplacement(output);
         applyBorderWatermark(output);
         return output;
@@ -5429,6 +6192,54 @@
       targetCtx.drawImage(brightCanvas, 0, 0);
       targetCtx.restore();
     }
+
+
+    function applyFilmDustAndScratches(canvasElement) {
+      const amount = Number(filmDustScratchesInput?.value || 0);
+      if (amount <= 0) return;
+
+      const dustCtx = canvasElement.getContext('2d');
+      const width = canvasElement.width;
+      const height = canvasElement.height;
+      const intensity = amount / 100;
+
+      dustCtx.save();
+      dustCtx.globalCompositeOperation = 'screen';
+
+      const specks = Math.round((width * height / 90000) * (18 + intensity * 90));
+      for (let i = 0; i < specks; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const radius = 0.35 + Math.random() * (1.25 + intensity * 1.3);
+        const alpha = 0.08 + Math.random() * (0.22 * intensity + 0.08);
+
+        dustCtx.globalAlpha = alpha;
+        dustCtx.fillStyle = Math.random() > 0.28 ? '#ffffff' : '#d7e8ff';
+        dustCtx.beginPath();
+        dustCtx.arc(x, y, radius, 0, Math.PI * 2);
+        dustCtx.fill();
+      }
+
+      const scratches = Math.round(1 + intensity * 10);
+      for (let i = 0; i < scratches; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const length = height * (0.08 + Math.random() * (0.28 + intensity * 0.28));
+        const drift = (Math.random() - 0.5) * width * 0.025;
+        const alpha = 0.05 + Math.random() * (0.16 * intensity + 0.04);
+
+        dustCtx.globalAlpha = alpha;
+        dustCtx.strokeStyle = Math.random() > 0.5 ? '#ffffff' : '#b9d9ff';
+        dustCtx.lineWidth = 0.7 + Math.random() * (1.1 + intensity);
+        dustCtx.beginPath();
+        dustCtx.moveTo(x, y);
+        dustCtx.lineTo(x + drift, y + length);
+        dustCtx.stroke();
+      }
+
+      dustCtx.restore();
+    }
+
 
     function applyRgbDisplacement(canvasElement) {
       const amount = Number(rgbDisplacementInput.value || 0);
@@ -6062,6 +6873,7 @@
       downloadLink.style.display = 'none';
         hidePreviewDownload();
       generateBtn.disabled = true;
+      syncWorkflowExportButtonState();
       exportJpgBtn.disabled = true;
       keypointBtn.disabled = true;
       stopApplyKeypointsPulse();
@@ -6335,27 +7147,65 @@
       return [...finalFrameCanvases, ...backwards];
     }
 
+    function getInterpolationAmount() {
+      return clamp(Number(frameInterpolationAmountInput.value || 0), 0, 100);
+    }
+
     function getInterpolationStepCount() {
-      const value = Number(frameInterpolationAmountInput.value);
-      return Math.max(0, Math.round(value / 20));
+      const value = getInterpolationAmount();
+      if (value <= 0) return 0;
+      if (value <= 25) return 1;
+      if (value <= 50) return 2;
+      if (value <= 75) return 3;
+      return 4;
     }
 
     function easeInterpolation(t) {
       return t * t * (3 - 2 * t);
     }
 
+    function getSmartInterpolationAlpha(rawAlpha) {
+      const amount = getInterpolationAmount() / 100;
+      const eased = easeInterpolation(rawAlpha);
+      const sine = 0.5 - Math.cos(rawAlpha * Math.PI) / 2;
+      return clamp((eased * (1 - amount)) + (sine * amount), 0, 1);
+    }
+
     function createBlendedFrame(frameA, frameB, alpha) {
       const output = document.createElement('canvas');
       output.width = frameA.width;
       output.height = frameA.height;
-      const outputCtx = output.getContext('2d');
+      const outputCtx = output.getContext('2d', { alpha: false });
+      outputCtx.imageSmoothingEnabled = true;
+      outputCtx.imageSmoothingQuality = 'high';
+
       outputCtx.clearRect(0, 0, output.width, output.height);
       outputCtx.globalAlpha = 1;
       outputCtx.drawImage(frameA, 0, 0);
-      outputCtx.globalAlpha = alpha;
+
+      const softAlpha = clamp(alpha, 0, 1);
+      outputCtx.globalAlpha = softAlpha;
       outputCtx.drawImage(frameB, 0, 0);
       outputCtx.globalAlpha = 1;
+
       return output;
+    }
+
+    function createSmartInterpolatedFrame(frameA, frameB, alpha) {
+      // Interpolação inteligente, sem crop, sem equalização e sem textura extra.
+      // Ela apenas melhora a transição entre frames usando a barra já existente.
+      return createBlendedFrame(frameA, frameB, getSmartInterpolationAlpha(alpha));
+    }
+
+    function shouldInterpolateBetweenFrames(currentIndex, baseFrames) {
+      if (!baseFrames || baseFrames.length <= 1) return false;
+
+      // Se o loop não estiver em ida-e-volta, evita interpolar a volta brusca do último
+      // frame para o primeiro. Isso reduz "salto digital" sem aplicar crop/equalização.
+      const isLastPair = currentIndex === baseFrames.length - 1;
+      if (isLastPair && !boomerangInput.checked) return false;
+
+      return true;
     }
 
     function getPlaybackFrames() {
@@ -6372,12 +7222,11 @@
 
         playbackFrames.push(currentFrame);
 
-        if (!nextFrame || nextFrame === currentFrame) continue;
+        if (!nextFrame || nextFrame === currentFrame || !shouldInterpolateBetweenFrames(index, baseFrames)) continue;
 
         for (let step = 1; step <= interpolationSteps; step++) {
           const rawAlpha = step / (interpolationSteps + 1);
-          const alpha = easeInterpolation(rawAlpha);
-          playbackFrames.push(createBlendedFrame(currentFrame, nextFrame, alpha));
+          playbackFrames.push(createSmartInterpolatedFrame(currentFrame, nextFrame, rawAlpha));
         }
       }
 
@@ -6388,7 +7237,7 @@
       const baseDelay = Number(delayInput.value);
       const interpolationSteps = getInterpolationStepCount();
       const effectiveDelay = baseDelay / (interpolationSteps + 1);
-      return Math.max(20, Math.round(effectiveDelay));
+      return Math.max(18, Math.round(effectiveDelay));
     }
 
     function getSelectedGifDurationMs() {
@@ -6494,6 +7343,7 @@
       if (previewMode === 'frame' || currentLensMode === 'retro' || finalFrameCanvases.length === 1) {
         const chosenFrame = finalFrameCanvases[selectedAdjustFrame] || finalFrameCanvases[0];
         drawPreviewFrame(chosenFrame);
+        syncWorkflowExportButtonState(false);
         return;
       }
 
@@ -6513,6 +7363,7 @@
 
       draw();
       animationTimer = setInterval(draw, frameDelay);
+      syncWorkflowExportButtonState(false);
     }
 
     function exportHighJpg() {
@@ -6587,6 +7438,7 @@
         if (exportBox) {
           exportBox.innerHTML = `<strong>Exportação Retro:</strong> JPG em ${preset.aspectLabel} (${preset.width} × ${preset.height} px), qualidade alta. Ideal para postagem, catálogo e entrega final.`;
         }
+        syncWorkflowExportButtonState(false);
         updateExportResultMeta();
         updateWorkflowStatus();
         return;
@@ -6608,9 +7460,21 @@
         exportBox.innerHTML = `<strong>Exportação:</strong> arquivo ${label} em ${preset.aspectLabel} (${preset.width} × ${preset.height} px), qualidade ${preset.label}. O enquadramento usa crop automático para preencher a tela sem bordas pretas.${watermarkEnabledInput.checked ? " A marca d'água nas bordas será aplicada no arquivo final." : ''}`;
       }
 
+      syncWorkflowExportButtonState(false);
       updateExportResultMeta();
       updateWorkflowStatus();
     }
+
+
+    function syncWorkflowExportButtonState(forceDisabled = false) {
+      if (!workflowGenerateBtn) return;
+
+      const hasFramesReady = finalFrameCanvases.length > 0;
+      const isInterfaceLocked = Boolean(forceDisabled) || Boolean(exportFormatSelect?.disabled);
+      workflowGenerateBtn.disabled = isInterfaceLocked || !hasFramesReady;
+      workflowGenerateBtn.textContent = generateBtn.textContent || (currentLensMode === 'retro' ? 'Exportar JPG alto' : 'Exportar arquivo');
+    }
+
 
     function setExportButtonsDisabled(disabled) {
       if (currentLensMode === 'retro') {
@@ -6647,6 +7511,7 @@
       watermarkTextInput.disabled = disabled || !watermarkEnabledInput.checked;
       frameJumpButtons.querySelectorAll('button').forEach((button) => button.disabled = disabled);
       nudgeButtons.forEach((button) => button.disabled = disabled);
+      syncWorkflowExportButtonState(disabled);
     }
 
     function generateGif() {
@@ -6711,6 +7576,86 @@
       gif.render();
     }
 
+
+    function isLikelyProblematicVideoExportEnvironment() {
+      const userAgent = navigator.userAgent || '';
+      const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(userAgent);
+      return isSafari || isIOS || isMobile;
+    }
+
+    function hasMeaningfulPixels(canvasElement) {
+      if (!canvasElement || !canvasElement.width || !canvasElement.height) return false;
+
+      const sampleCanvas = document.createElement('canvas');
+      const sampleSize = 24;
+      sampleCanvas.width = sampleSize;
+      sampleCanvas.height = sampleSize;
+      const sampleCtx = sampleCanvas.getContext('2d', { willReadFrequently: true });
+      sampleCtx.drawImage(canvasElement, 0, 0, sampleSize, sampleSize);
+
+      const image = sampleCtx.getImageData(0, 0, sampleSize, sampleSize);
+      const data = image.data;
+      let nonBlackPixels = 0;
+      let visiblePixels = 0;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        const a = data[i + 3];
+
+        if (a > 10) visiblePixels++;
+        if (a > 10 && (r > 12 || g > 12 || b > 12)) {
+          nonBlackPixels++;
+        }
+      }
+
+      return visiblePixels > 0 && nonBlackPixels > 8;
+    }
+
+    function shouldUseSafeExportMode(format = '') {
+      return Boolean(safeExportModeInput?.checked) || (format !== 'gif' && isLikelyProblematicVideoExportEnvironment());
+    }
+
+    function showSafeExportWarning(show = true) {
+      if (!safeExportWarning) return;
+      safeExportWarning.style.display = show ? 'block' : 'none';
+    }
+
+    function prepareSafeVideoFrames(frames) {
+      const preset = getExportPreset();
+      const safeWidth = Math.min(preset.width, 1280);
+      const safeHeight = Math.round(safeWidth / (preset.width / preset.height));
+      const targetWidth = safeWidth % 2 === 0 ? safeWidth : safeWidth - 1;
+      const targetHeight = safeHeight % 2 === 0 ? safeHeight : safeHeight - 1;
+
+      return frames.map((frame) => {
+        const safeCanvas = document.createElement('canvas');
+        safeCanvas.width = targetWidth;
+        safeCanvas.height = targetHeight;
+        const safeCtx = safeCanvas.getContext('2d', { alpha: false });
+        safeCtx.imageSmoothingEnabled = true;
+        safeCtx.imageSmoothingQuality = 'high';
+        safeCtx.fillStyle = '#061426';
+        safeCtx.fillRect(0, 0, targetWidth, targetHeight);
+        safeCtx.drawImage(frame, 0, 0, targetWidth, targetHeight);
+        return safeCanvas;
+      });
+    }
+
+    function validateFramesBeforeExport(frames) {
+      if (!frames || !frames.length) return false;
+      const first = frames[0];
+      if (hasMeaningfulPixels(first)) return true;
+
+      rebuildFinalFrames();
+      const redrawn = finalFrameCanvases[0];
+      return hasMeaningfulPixels(redrawn);
+    }
+
+
     function generateVideo(format) {
       if (!finalFrameCanvases.length) return;
 
@@ -6719,30 +7664,68 @@
         return;
       }
 
-      const mimeType = getSupportedVideoMime(format);
+      const useSafeExportMode = shouldUseSafeExportMode(format);
+      showSafeExportWarning(useSafeExportMode);
+
+      let mimeType = getSupportedVideoMime(format);
+      if (useSafeExportMode && MediaRecorder.isTypeSupported) {
+        const safeCandidates = [
+          'video/webm;codecs=vp9',
+          'video/webm;codecs=vp8',
+          'video/webm'
+        ];
+        const safeMime = safeCandidates.find((candidate) => MediaRecorder.isTypeSupported(candidate));
+        if (safeMime) mimeType = safeMime;
+      }
+
       if (!mimeType) {
-        setStatus(`Seu navegador não suporta exportar ${format.toUpperCase()} direto por HTML. Tente MP4 em outro navegador ou exporte em GIF.`);
+        setStatus(`Seu navegador não suporta exportar ${format.toUpperCase()} direto por HTML. Tente GIF, JPG alto ou outro navegador.`);
         return;
       }
+
+      let playbackFrames = getPlaybackFrames();
+      if (!playbackFrames.length) {
+        setStatus('Não há frames prontos para exportar. Carregue e alinhe a imagem novamente.');
+        return;
+      }
+
+      if (!validateFramesBeforeExport(playbackFrames)) {
+        rebuildFinalFrames();
+        playbackFrames = getPlaybackFrames();
+      }
+
+      if (!validateFramesBeforeExport(playbackFrames)) {
+        setStatus('Detectamos risco de arquivo preto. Ative o modo de segurança ou exporte em GIF/JPG alto.');
+        return;
+      }
+
+      if (useSafeExportMode) {
+        playbackFrames = prepareSafeVideoFrames(playbackFrames);
+      }
+
+      const exportWidth = playbackFrames[0].width;
+      const exportHeight = playbackFrames[0].height;
 
       clearInterval(animationTimer);
       setExportButtonsDisabled(true);
       downloadLink.style.display = 'none';
-        hidePreviewDownload();
+      hidePreviewDownload();
 
       const preset = getExportPreset();
-      currentExportLabel = `${format.toUpperCase()} ${preset.aspectLabel} ${preset.label}`;
+      currentExportLabel = `${format.toUpperCase()} ${preset.aspectLabel} ${useSafeExportMode ? 'modo compatível' : preset.label}`;
       exportProgress = 0;
       exportStart = performance.now();
       updateExportStatus();
       exportTimer = setInterval(updateExportStatus, 250);
 
       const recordCanvas = document.createElement('canvas');
-      recordCanvas.width = preset.width;
-      recordCanvas.height = preset.height;
-      const recordCtx = recordCanvas.getContext('2d');
+      recordCanvas.width = exportWidth;
+      recordCanvas.height = exportHeight;
+      const recordCtx = recordCanvas.getContext('2d', { alpha: false });
+      recordCtx.fillStyle = '#061426';
+      recordCtx.fillRect(0, 0, exportWidth, exportHeight);
 
-      const fps = 30;
+      const fps = useSafeExportMode ? 24 : 30;
       const stream = recordCanvas.captureStream(fps);
       const chunks = [];
       let recorder;
@@ -6750,14 +7733,14 @@
       try {
         recorder = new MediaRecorder(stream, {
           mimeType,
-          videoBitsPerSecond: preset.videoBitsPerSecond
+          videoBitsPerSecond: useSafeExportMode ? 2500000 : preset.videoBitsPerSecond
         });
       } catch (error) {
         clearInterval(exportTimer);
         hideExportOverlay();
         setExportButtonsDisabled(false);
         startPreview();
-        setStatus(`Não foi possível iniciar a exportação em ${format.toUpperCase()}. Tente outro formato.`);
+        setStatus(`Não foi possível iniciar a exportação em ${format.toUpperCase()}. Tente GIF, JPG alto ou outro navegador.`);
         return;
       }
 
@@ -6770,7 +7753,7 @@
         hideExportOverlay();
         setExportButtonsDisabled(false);
         startPreview();
-        setStatus(`Erro ao exportar ${format.toUpperCase()}. Tente outro formato ou reduza o tempo do vídeo.`);
+        setStatus(`Erro ao exportar ${format.toUpperCase()}. Tente ativar o modo de segurança, usar GIF ou reduzir o tempo do vídeo.`);
       };
 
       recorder.onstop = () => {
@@ -6781,21 +7764,23 @@
 
         const blob = new Blob(chunks, { type: mimeType });
         const url = URL.createObjectURL(blob);
-        const extension = format === 'mov' ? 'mov' : 'mp4';
+        const isWebm = mimeType.includes('webm');
+        const extension = isWebm ? 'webm' : (format === 'mov' ? 'mov' : 'mp4');
+        const safeSuffix = useSafeExportMode ? '-modo-compativel' : '';
+        const filename = `${getOutputFileBaseName()}${safeSuffix}.${extension}`;
+        const label = isWebm ? 'Baixar vídeo compatível' : `Baixar ${format.toUpperCase()}`;
 
-        const filename = `${getOutputFileBaseName()}.${extension}`;
         downloadLink.href = url;
         downloadLink.download = filename;
-        downloadLink.textContent = `Baixar ${format.toUpperCase()}`;
+        downloadLink.textContent = label;
         downloadLink.style.display = 'block';
-        showPreviewDownload(url, filename, `Baixar ${format.toUpperCase()}`);
+        showPreviewDownload(url, filename, label);
 
         setExportButtonsDisabled(false);
         startPreview();
-        setStatus(`${format.toUpperCase()} ${getExportPreset().aspectLabel} ${getExportPreset().label} pronto! Tempo total de exportação: ${formatElapsed(performance.now() - exportStart)}.`);
+        setStatus(`${format.toUpperCase()} pronto${useSafeExportMode ? ' em modo compatível' : ''}! Tempo total de exportação: ${formatElapsed(performance.now() - exportStart)}.`);
       };
 
-      const playbackFrames = getPlaybackFrames();
       const movementFrameDelay = getMovementFrameDelay();
       const videoDurationMs = getVideoDurationMs();
       const startedAt = performance.now();
@@ -6806,12 +7791,14 @@
         const elapsed = performance.now() - startedAt;
         const progress = clamp(elapsed / videoDurationMs, 0, 1);
         const frameIndexForVideo = Math.floor(elapsed / movementFrameDelay) % playbackFrames.length;
+        const frame = playbackFrames[frameIndexForVideo];
 
-        recordCtx.clearRect(0, 0, preset.width, preset.height);
-        recordCtx.drawImage(playbackFrames[frameIndexForVideo], 0, 0);
+        recordCtx.fillStyle = '#061426';
+        recordCtx.fillRect(0, 0, exportWidth, exportHeight);
+        recordCtx.drawImage(frame, 0, 0, exportWidth, exportHeight);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(playbackFrames[frameIndexForVideo], 0, 0);
+        ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
 
         exportProgress = progress;
         updateExportStatus();
@@ -6821,8 +7808,10 @@
         } else {
           exportProgress = 1;
           const finalFrameIndex = Math.floor(videoDurationMs / movementFrameDelay) % playbackFrames.length;
-          recordCtx.clearRect(0, 0, preset.width, preset.height);
-          recordCtx.drawImage(playbackFrames[finalFrameIndex], 0, 0);
+          const finalFrame = playbackFrames[finalFrameIndex];
+          recordCtx.fillStyle = '#061426';
+          recordCtx.fillRect(0, 0, exportWidth, exportHeight);
+          recordCtx.drawImage(finalFrame, 0, 0, exportWidth, exportHeight);
 
           setTimeout(() => {
             if (recorder.state !== 'inactive') recorder.stop();
@@ -6856,11 +7845,24 @@
       previewDownloadLink.download = filename;
       previewDownloadLink.textContent = label;
       previewDownloadLink.classList.add('show');
+
+      if (workflowDownloadLink) {
+        workflowDownloadLink.href = url;
+        workflowDownloadLink.download = filename;
+        workflowDownloadLink.textContent = label;
+        workflowDownloadLink.style.display = 'block';
+      }
     }
 
     function hidePreviewDownload() {
       previewDownloadLink.classList.remove('show');
       previewDownloadLink.removeAttribute('href');
+
+      if (workflowDownloadLink) {
+        workflowDownloadLink.style.display = 'none';
+        workflowDownloadLink.removeAttribute('href');
+        workflowDownloadLink.removeAttribute('download');
+      }
     }
 
     function hideExportOverlay() {
@@ -6903,6 +7905,7 @@
       clearInterval(exportTimer);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       canvas.style.display = 'none';
+    syncWorkflowExportButtonState(true);
       canvas.classList.remove('keypoint-mode');
       emptyState.style.display = 'block';
       framesList.innerHTML = '';
@@ -6997,6 +8000,257 @@
         closeMacInstallModal();
       }
     });
+
+
+    function getFieldContainer(control) {
+      if (!control) return null;
+      return control.closest('.field');
+    }
+
+    function getFieldBySelector(selector) {
+      const el = document.querySelector(selector);
+      return el ? el.closest('.field') : null;
+    }
+
+    function markMobileSimplifiedFields() {
+      [
+        getFieldContainer(vintageEffectSelect),
+        getFieldContainer(vintageIntensityInput),
+        getFieldContainer(customLutInput),
+        getFieldContainer(exposureAdjustInput),
+        getFieldContainer(sharpnessAdjustInput),
+        getFieldContainer(glowAdjustInput),
+        getFieldContainer(rgbDisplacementInput),
+        getFieldContainer(frameInterpolationAmountInput),
+        getFieldContainer(watermarkEnabledInput),
+        getFieldContainer(watermarkTextInput),
+        getFieldBySelector('#safeExportMode')
+      ].filter(Boolean).forEach((node) => node.classList.add('mobile-hide-3d'));
+
+      const exportMiniNotes = document.querySelectorAll('.export-action-panel .mini-note');
+      exportMiniNotes.forEach((note) => note.classList.add('mini-note-mobile-hide'));
+    }
+
+    function setCollapsibleBadgeLabels() {
+      document.querySelectorAll('.tool-group-badge').forEach((badge) => {
+        if (badge.dataset.badgeApplied === 'true') return;
+        badge.dataset.badgeApplied = 'true';
+        badge.innerHTML = '<span class="badge-pulse-text">Painel recolhível</span>';
+      });
+    }
+
+    function ensureMergedExportSection() {
+      if (!stepCreativeGroup || !stepExportGroup) return null;
+      const creativeContent = stepCreativeGroup.querySelector('.tool-group-content');
+      const exportContent = stepExportGroup.querySelector('.tool-group-content');
+      if (!creativeContent || !exportContent) return null;
+
+      let mergedSection = creativeContent.querySelector('.merged-export-section');
+      if (!mergedSection) {
+        mergedSection = document.createElement('div');
+        mergedSection.className = 'merged-export-section';
+        mergedSection.innerHTML = `
+          <div class="panel-subsection-title">
+            <span>Exportar arquivo</span>
+            <small>Defina formato, velocidade, qualidade e gere o resultado final dentro deste painel.</small>
+          </div>
+        `;
+        creativeContent.appendChild(mergedSection);
+      }
+
+      if (exportContent.childElementCount > 0) {
+        while (exportContent.firstChild) {
+          mergedSection.appendChild(exportContent.firstChild);
+        }
+      }
+
+      stepExportGroup.setAttribute('hidden', 'hidden');
+      stepExportGroup.style.display = 'none';
+      return mergedSection;
+    }
+
+    function appendNodes(parent, nodes) {
+      if (!parent) return;
+      nodes.filter(Boolean).forEach((node) => parent.appendChild(node));
+    }
+
+
+
+    function update3dEffectFieldVisibility() {
+      const is3d = currentLensMode === '3d';
+      const warmthField = getFieldContainer(retroWarmthAdjustInput);
+      const fadeField = getFieldContainer(retroFadeAdjustInput);
+      const grainField = getFieldContainer(retroGrainAdjustInput);
+      const vignetteField = getFieldContainer(retroVignetteAdjustInput);
+      const dustField = getFieldContainer(filmDustScratchesInput);
+
+      if (warmthField) warmthField.style.display = is3d ? 'none' : '';
+      if (fadeField) fadeField.style.display = is3d ? 'none' : '';
+      if (grainField) grainField.style.display = '';
+      if (vignetteField) vignetteField.style.display = '';
+      if (dustField) dustField.style.display = '';
+    }
+
+
+    function force3dCreativeEffectsVisible() {
+      [
+        getFieldContainer(retroGrainAdjustInput),
+        getFieldContainer(retroVignetteAdjustInput),
+        getFieldContainer(filmDustScratchesInput)
+      ].filter(Boolean).forEach((field) => {
+        field.classList.remove('mobile-hide-3d');
+        field.classList.add('show-in-3d-effects');
+      });
+    }
+
+
+    function applyUnifiedPanelLayout() {
+      const mergedExportSection = ensureMergedExportSection();
+      const importContent = stepImportGroup?.querySelector('.tool-group-content');
+      const creativeContent = stepCreativeGroup?.querySelector('.tool-group-content');
+      if (!importContent || !creativeContent) return;
+      force3dCreativeEffectsVisible();
+
+      const isRetro = currentLensMode === 'retro';
+
+      const dropzoneNode = dropzone;
+      const retroLookNote = importContent.querySelector('.retro-look-note');
+      const keypointPanelNode = document.querySelector('#keypointPanel');
+      const inputLayoutField = getFieldContainer(inputLayoutSelect);
+      const frameCountField = getFieldContainer(frameCountSelect);
+      const exportAspectField = getFieldContainer(exportAspectSelect);
+      const candidateAssistField = getFieldContainer(candidateAssistToggle);
+      const alignToolsField = document.querySelector('.align-tools-field');
+
+      appendNodes(importContent, [dropzoneNode]);
+      if (isRetro) {
+        appendNodes(importContent, [exportAspectField, alignToolsField]);
+        if (retroLookNote) retroLookNote.style.display = 'none';
+      } else {
+        appendNodes(importContent, [inputLayoutField, frameCountField, exportAspectField, candidateAssistField, keypointPanelNode, alignToolsField]);
+        if (retroLookNote) retroLookNote.style.display = 'none';
+      }
+
+      const presetsField = creativeContent.querySelector('.retro-presets-field');
+      const vintageField = getFieldContainer(vintageEffectSelect);
+      const vintageIntensityField = getFieldContainer(vintageIntensityInput);
+      const lutField = getFieldContainer(customLutInput);
+      const exposureField = getFieldContainer(exposureAdjustInput);
+      const sharpnessField = getFieldContainer(sharpnessAdjustInput);
+      const glowField = getFieldContainer(glowAdjustInput);
+      const warmthField = getFieldContainer(retroWarmthAdjustInput);
+      const fadeField = getFieldContainer(retroFadeAdjustInput);
+      const grainField = getFieldContainer(retroGrainAdjustInput);
+      const vignetteField = getFieldContainer(retroVignetteAdjustInput);
+      const rgbField = getFieldContainer(rgbDisplacementInput);
+      const interpolationField = getFieldContainer(frameInterpolationAmountInput);
+      const watermarkField = getFieldContainer(watermarkEnabledInput);
+      const watermarkTextFieldNode = document.querySelector('#watermarkTextField');
+
+      if (isRetro) {
+        appendNodes(creativeContent, [
+          presetsField,
+          vintageField,
+          vintageIntensityField,
+          lutField,
+          exposureField,
+          sharpnessField,
+          glowField,
+          warmthField,
+          fadeField,
+          grainField,
+          vignetteField,
+          rgbField,
+          watermarkField,
+          watermarkTextFieldNode,
+          mergedExportSection
+        ]);
+      } else {
+        appendNodes(creativeContent, [
+          vintageField,
+          vintageIntensityField,
+          lutField,
+          exposureField,
+          sharpnessField,
+          glowField,
+          grainField,
+          vignetteField,
+          getFieldContainer(filmDustScratchesInput),
+          rgbField,
+          interpolationField,
+          watermarkField,
+          watermarkTextFieldNode,
+          mergedExportSection
+        ]);
+      }
+
+      const mergedTitle = mergedExportSection?.querySelector('.panel-subsection-title span');
+      const mergedText = mergedExportSection?.querySelector('.panel-subsection-title small');
+      if (mergedTitle) mergedTitle.textContent = isRetro ? 'Exportar foto final' : 'Exportar arquivo';
+      if (mergedText) mergedText.textContent = isRetro
+        ? 'Defina resolução e qualidade para baixar a foto final sem sair deste painel.'
+        : 'Defina formato, velocidade, qualidade e gere o arquivo final dentro deste painel.';
+      update3dEffectFieldVisibility();
+    }
+
+    function refreshUnifiedPanelTexts() {
+      const isRetro = currentLensMode === 'retro';
+      const importTitle = document.querySelector('#stepImportGroup .tool-group-title strong');
+      const importDescription = document.querySelector('#stepImportGroup .tool-group-title span');
+      const creativeTitle = document.querySelector('#stepCreativeGroup .tool-group-title strong');
+      const creativeDescription = document.querySelector('#stepCreativeGroup .tool-group-title span');
+      const exportTitle = document.querySelector('#stepExportGroup .tool-group-title strong');
+      const exportDescription = document.querySelector('#stepExportGroup .tool-group-title span');
+      const workflowGenerateLabel = document.querySelector('#workflowExportCta strong');
+      const workflowGenerateText = document.querySelector('#workflowExportCta p');
+      const workflowGenerateBtnLocal = document.querySelector('#workflowGenerateBtn');
+      const framesLabel = document.querySelector('#framesCard > label');
+      const previewActionsLabel = document.querySelector('.preview-point-actions-card > label');
+
+      if (isRetro) {
+        if (importTitle) importTitle.textContent = 'Upload e ajustes da Lente Retro';
+        if (importDescription) importDescription.textContent = 'Carregue a foto, escolha o formato final e prepare o enquadramento.';
+        if (creativeTitle) creativeTitle.textContent = 'Ajustes criativos e Exportar';
+        if (creativeDescription) creativeDescription.textContent = 'Receitas prontas, tratamento analógico e exportação da foto final.';
+        if (exportTitle) exportTitle.textContent = 'Exportar foto final';
+        if (exportDescription) exportDescription.textContent = 'Defina resolução e qualidade da foto final.';
+        if (workflowGenerateLabel) workflowGenerateLabel.textContent = 'Pronto para finalizar a foto?';
+        if (workflowGenerateText) workflowGenerateText.textContent = 'Depois de ajustar a estética retrô, exporte a foto final aqui também.';
+        if (workflowGenerateBtnLocal) workflowGenerateBtnLocal.textContent = 'Exportar foto';
+        if (framesLabel) framesLabel.textContent = 'Visualização da foto carregada';
+      } else {
+        if (importTitle) importTitle.textContent = 'Importar e alinhar imagem';
+        if (importDescription) importDescription.textContent = 'Carregue a foto 3D, escolha o layout, alinhe o objeto principal e prepare a base da montagem.';
+        if (creativeTitle) creativeTitle.textContent = 'Ajustes e Exportar';
+        if (creativeDescription) creativeDescription.textContent = 'Ajuste filtros, vinheta, grão, Dust and Scratches, velocidade e exporte no mesmo painel.';
+        if (exportTitle) exportTitle.textContent = 'Exportar arquivo';
+        if (exportDescription) exportDescription.textContent = 'Defina resolução, formato, duração e qualidade do arquivo final.';
+        if (workflowGenerateLabel) workflowGenerateLabel.textContent = 'Pronto para finalizar?';
+        if (workflowGenerateText) workflowGenerateText.textContent = 'Depois de importar, alinhar e ajustar o estilo, exporte o arquivo final aqui também.';
+        if (workflowGenerateBtnLocal) workflowGenerateBtnLocal.textContent = 'Exportar arquivo';
+        if (framesLabel) framesLabel.textContent = 'Frames originais com pontos registrados';
+      }
+
+      if (previewActionsLabel) previewActionsLabel.textContent = 'Alinhamento do GIF 3D';
+    }
+
+    function applyMobileMinimalExperience() {
+      const isMobile = window.matchMedia('(max-width: 680px)').matches;
+      document.body.classList.toggle('mobile-compact-active', isMobile);
+    }
+
+    setCollapsibleBadgeLabels();
+
+    function forceTextBadgesFinal() {}
+
+    forceTextBadgesFinal();
+
+    markMobileSimplifiedFields();
+    applyUnifiedPanelLayout();
+    refreshUnifiedPanelTexts();
+    applyMobileMinimalExperience();
+
+    window.addEventListener('resize', applyMobileMinimalExperience);
 
 
     updateExportControls();
